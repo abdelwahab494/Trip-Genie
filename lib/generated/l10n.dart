@@ -53,6 +53,52 @@ class S {
   static S? maybeOf(BuildContext context) {
     return Localizations.of<S>(context, S);
   }
+
+  /// `Smart Egypt Day`
+  String get smartEgyptDay {
+    return Intl.message(
+      'Smart Egypt Day',
+      name: 'smartEgyptDay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Explore Smart Egypt`
+  String get exploreSmartEgypt {
+    return Intl.message(
+      'Explore Smart Egypt',
+      name: 'exploreSmartEgypt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select your city to begin your journey.`
+  String get selectyourcitytobeginyourjourney {
+    return Intl.message(
+      'Select your city to begin your journey.',
+      name: 'selectyourcitytobeginyourjourney',
+      desc: '',
+      args: [],
+    );
+  }
+
+  // skipped getter for the 'searchcities...' key
+
+  /// `Explore`
+  String get explore {
+    return Intl.message('Explore', name: 'explore', desc: '', args: []);
+  }
+
+  // skipped getter for the 'searchForcity..' key
+
+  /// `Trip Genie`
+  String get tripGenie {
+    return Intl.message('Trip Genie', name: 'tripGenie', desc: '', args: []);
+  }
+
+  // skipped getter for the 'searchForACity..' key
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
