@@ -19,6 +19,7 @@ class CityCard extends StatelessWidget {
           left: AppSizes.w16,
         ),
         height: AppSizes.h400,
+        width: MediaQuery.of(context).size.width * 0.8,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(AppSizes.r12),
         ),

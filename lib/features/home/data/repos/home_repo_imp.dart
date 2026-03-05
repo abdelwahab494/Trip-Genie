@@ -4,12 +4,15 @@ import 'package:dartz/dartz.dart';
 import 'package:trip_genie/core/errors/supbase_faluire.dart';
 import 'package:trip_genie/core/networking/databases/cities/cities_database.dart';
 import 'package:trip_genie/core/networking/databases/cities/cities_model.dart';
+import 'package:trip_genie/core/networking/gemini_service/gemini_service.dart';
+import 'package:trip_genie/core/networking/gemini_service/travel_tip_model.dart';
 import 'package:trip_genie/features/home/data/repos/home_repo.dart';
 
 class HomeRepoImp implements HomeRepo {
   final CitiesDatabase citiesDatabase;
+  final GeminiService geminiService;
 
-  HomeRepoImp({required this.citiesDatabase});
+  HomeRepoImp({required this.citiesDatabase, required this.geminiService});
 
   @override
   Future<Either<SupabaseFailure, List<CityModel>>> getAllCities() async {
@@ -58,4 +61,20 @@ Future<Either<SupabaseFailure, List<CityModel>>> searchCities(String query) asyn
     return left(SupabaseFailure.fromException(e));
   }
 }
+
+  @override
+  Future<List<TravelTipModel>> getSmartGuide(List<String> categories) async {
+    try {
+      return await geminiService.getSmartGuide(categories);
+    } catch (e, stackTrace) {
+      log("Gemini Error: $e");
+      log("StackTrace: $stackTrace");
+      // Fallback to default tips if Gemini fails
+      return categories.map((cat) => TravelTipModel(
+        category: cat, 
+        description: "Essential tips for your journey through Egypt."
+      )).toList();
+    }
+  }
+
 }
