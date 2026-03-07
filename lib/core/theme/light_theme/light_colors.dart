@@ -17,10 +17,13 @@ class LightColors {
 
   // Background / Surface Colors
   static const Color background = Colors.white;
+  static const Color secBackground = Color(0xffF8F7F6);
   static const Color surface = Color(0xffF4F0E3);
   static const Color onSurface = Color(0xff1f1b13);
 
   // Decorative / Utility
   static const Color error = Color(0xffba1a1a);
   static const Color outline = Color(0xff7d7667);
+
+  static const Color grey = Color(0xff334155);
 }

@@ -1,5 +1,4 @@
 
-import 'package:trip_genie/core/errors/faluire.dart';
 import 'package:trip_genie/core/manager/app_imports.dart';
 
 abstract class SupabaseFailure extends Failure {

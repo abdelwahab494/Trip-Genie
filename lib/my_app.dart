@@ -1,9 +1,4 @@
 import 'package:trip_genie/core/manager/app_imports.dart';
-import 'package:trip_genie/core/networking/gemini_service/gemini_service.dart';
-import 'package:trip_genie/core/routing/routing.dart';
-import 'package:trip_genie/features/travel_tips/data/repo/travel_tips_repo_imp.dart';
-import 'package:trip_genie/features/travel_tips/data/travel_tips_cubit/cubit/travel_tips_cubit.dart';
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -18,12 +13,15 @@ class MyApp extends StatelessWidget {
         return MultiBlocProvider(
           providers: [
             BlocProvider(
-              create: (context) => HomeCubit(HomeRepoImp(citiesDatabase: CitiesDatabase(), geminiService: GeminiService(), )), // Pass the GeminiService to the HomeRepoImp
+              create: (context) => HomeCubit(
+                HomeRepoImpl(citiesDatabaseService: CitiesDatabaseService()),
+              ), // Pass the GeminiService to the HomeRepoImpl
             ),
             BlocProvider(
-                create: (context) => TravelTipsCubit(TravelTipsRepoImpl( GeminiService() )), // Pass the GeminiService to the TravelTipsRepoImp
-              ),
-           
+              create: (context) => TravelTipsCubit(
+                TravelTipsRepoImpl(TravelTipsService()),
+              ), // Pass the GeminiService to the TravelTipsRepoImp
+            ),
           ],
           child: MaterialApp(
             onGenerateRoute: Routing.generateRoute,
@@ -37,10 +35,10 @@ class MyApp extends StatelessWidget {
               GlobalCupertinoLocalizations.delegate,
             ],
             supportedLocales: S.delegate.supportedLocales,
-            theme: getLightTheme(),
+            theme: lightTheme,
             darkTheme: darkTheme,
             themeMode: ThemeMode.light,
-            home: HomeView(),
+            home: AuthGate(),
           ),
         );
       },

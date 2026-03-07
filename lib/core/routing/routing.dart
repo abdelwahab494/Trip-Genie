@@ -5,14 +5,13 @@ class Routing {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case AppRoutes.home:
-        return MaterialPageRoute(builder: (context) => HomeView());
+        return MaterialPageRoute(builder: (context) => HomeScreen());
       default:
-        return MaterialPageRoute(
-            builder: (context) => NoRouteView(),
-        );
+        return MaterialPageRoute(builder: (context) => NoRouteView());
     }
   }
 }
+
 class NoRouteView extends StatelessWidget {
   const NoRouteView({super.key});
 
