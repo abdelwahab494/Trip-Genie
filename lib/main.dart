@@ -1,13 +1,11 @@
-import 'package:flutter_gemini/flutter_gemini.dart';
-
 import 'core/manager/app_imports.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Supabase.initialize(
-    url: 'https://dbkqsmuwrlngryjpvjgx.supabase.co',
-    anonKey: 'sb_publishable_XSAurIex_QX1J56ejomTMA_S2ndZYAD',
+    url: 'https://opcjgwvwwuaamumuvtwk.supabase.co',
+    anonKey: 'sb_publishable_agK9qiHQxmWWXR4yMGakKA_XO8i1BSt',
   );
-  Gemini.init(apiKey: "AIzaSyABlVOiQmaO8VFsUFlufaIrlxyGhPLRKvk");
+  // Gemini.init(apiKey: "AIzaSyABlVOiQmaO8VFsUFlufaIrlxyGhPLRKvk");
   runApp(const MyApp());
 }

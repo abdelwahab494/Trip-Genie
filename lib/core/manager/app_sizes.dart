@@ -1,6 +1,8 @@
 import 'package:trip_genie/core/manager/app_imports.dart';
 
 class AppSizes {
+  AppSizes._();
+
   //* Height Utils
   static final double h0 = 0.h;
   static final double h4 = 4.h;
@@ -67,6 +69,8 @@ class AppSizes {
   static final double w36 = 36.w;
   static final double w40 = 40.w;
   static final double w42 = 42.w;
+  static final double w45 = 45.w;
+  static final double w50 = 50.w;
   static final double w57 = 57.w;
   static final double w60 = 60.w;
   static final double w90 = 90.w;
@@ -75,7 +79,7 @@ class AppSizes {
   static final double w180 = 180.w;
   static final double w215 = 215.w;
   static final double w250 = 250.w;
-  static final double w358 =  358.w;
+  static final double w358 = 358.w;
 
   //* Font Size Utils
   static final double sp10 = 10.sp;
@@ -92,6 +96,7 @@ class AppSizes {
   static final double sp28 = 28.sp;
   static final double sp30 = 30.sp;
   static final double sp32 = 32.sp;
+  static final double sp36 = 36.sp;
   static final double sp40 = 40.sp;
   static final double sp500 = 500.sp;
 
