@@ -15,7 +15,7 @@ class AuthService {
     required String email,
     required String password,
   }) async {
-    return await supabase.auth.signUp(
+    return supabase.auth.signUp(
       email: email,
       password: password,
       data: {"name": name},
@@ -23,7 +23,36 @@ class AuthService {
   }
 
   Future<void> signOut() async {
-    return await supabase.auth.signOut();
+    return supabase.auth.signOut();
+  }
+
+  Future<void> requestResetToken(String email) async {
+    await supabase.auth.resetPasswordForEmail(email);
+  }
+
+  Future<void> verifyOTP({
+    required String email,
+    required String resetToken,
+  }) async {
+    await supabase.auth.verifyOTP(
+      email: email,
+      token: resetToken,
+      type: OtpType.recovery,
+    );
+  }
+
+  Future<void> updateUserAttributes({
+    String? name,
+    String? email,
+    String? password,
+  }) async {
+    await supabase.auth.updateUser(
+      UserAttributes(
+        password: password,
+        email: email,
+        data: name != null ? {"name": name} : null,
+      ),
+    );
   }
 
   User? get currentUser => supabase.auth.currentUser;

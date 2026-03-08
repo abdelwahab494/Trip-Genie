@@ -1,5 +1,6 @@
 import 'package:trip_genie/core/manager/app_imports.dart' hide AuthState;
 import 'package:trip_genie/features/auth/presentation/cubit/auth_cubit.dart';
+import 'package:trip_genie/features/auth/presentation/screens/reset%20password/forget_password_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -76,7 +77,15 @@ class _LoginScreenState extends State<LoginScreen> with FormHelperMixin {
                             Align(
                               alignment: Alignment.centerRight,
                               child: TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (c) => ForgetPasswordScreen(
+                                        email: emailC.text.trim(),
+                                      ),
+                                    ),
+                                  );
+                                },
                                 child: Text(
                                   s.forgotPassword,
                                   style: AppFonts.inter14SemiBold(context)
@@ -109,10 +118,12 @@ class _LoginScreenState extends State<LoginScreen> with FormHelperMixin {
                                 }
                                 return CustomFilledButton(
                                   onPressed: () {
-                                    context.read<AuthCubit>().signIn(
-                                      email: emailC.text.trim(),
-                                      password: passwordC.text.trim(),
-                                    );
+                                    if (formKey.currentState!.validate()) {
+                                      context.read<AuthCubit>().signIn(
+                                        email: emailC.text.trim(),
+                                        password: passwordC.text.trim(),
+                                      );
+                                    }
                                   },
                                   title: s.login,
                                 );

@@ -1,3 +1,4 @@
+import 'package:flutter/services.dart';
 import 'package:trip_genie/core/manager/app_imports.dart';
 
 class CustomTextField extends StatefulWidget {
@@ -6,14 +7,18 @@ class CustomTextField extends StatefulWidget {
     required this.controller,
     this.validator,
     required this.hint,
-    required this.title,
+    this.title,
     this.fieldTypesEnum = TextFieldTypesEnum.text,
+    this.readOnly = false,
+    this.showPastButton = false,
   });
   final TextEditingController controller;
   final String? Function(String?)? validator;
   final String hint;
-  final String title;
+  final String? title;
   final TextFieldTypesEnum fieldTypesEnum;
+  final bool readOnly;
+  final bool showPastButton;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -36,15 +41,17 @@ class _CustomTextFieldState extends State<CustomTextField> {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Text(
-          widget.title,
-          style: AppFonts.inter14SemiBold(
-            context,
-          ).copyWith(color: theme.colorScheme.tertiary),
-        ),
+        if (widget.title != null)
+          Text(
+            widget.title!,
+            style: AppFonts.inter14SemiBold(
+              context,
+            ).copyWith(color: theme.colorScheme.tertiary),
+          ),
         Gap(AppSizes.h8),
         TextFormField(
           controller: widget.controller,
+          readOnly: widget.readOnly,
           validator: widget.validator,
           cursorColor: theme.colorScheme.primary,
           autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -57,7 +64,19 @@ class _CustomTextFieldState extends State<CustomTextField> {
           decoration: InputDecoration(
             filled: true,
             fillColor: Colors.white,
-            suffixIcon: widget.fieldTypesEnum == TextFieldTypesEnum.password
+            suffixIcon: widget.showPastButton
+                ? IconButton(
+                    icon: Icon(Icons.paste, color: Colors.grey[500]),
+                    onPressed: () async {
+                      final clipboardData = await Clipboard.getData(
+                        'text/plain',
+                      );
+                      if (clipboardData != null && clipboardData.text != null) {
+                        widget.controller.text = clipboardData.text!;
+                      }
+                    },
+                  )
+                : widget.fieldTypesEnum == TextFieldTypesEnum.password
                 ? IconButton(
                     onPressed: () => setState(() => isPassword = !isPassword),
                     style: IconButton.styleFrom(padding: EdgeInsets.zero),
@@ -66,6 +85,7 @@ class _CustomTextFieldState extends State<CustomTextField> {
                       isPassword
                           ? Icons.visibility_rounded
                           : Icons.visibility_off_rounded,
+                      color: Colors.grey[500],
                     ),
                   )
                 : null,
@@ -76,6 +96,14 @@ class _CustomTextFieldState extends State<CustomTextField> {
             hintStyle: AppFonts.inter16Medium(
               context,
             ).copyWith(color: Colors.grey, fontSize: AppSizes.sp12),
+            disabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(AppSizes.r8),
+              borderSide: BorderSide(
+                color: Theme.of(
+                  context,
+                ).colorScheme.tertiary.withValues(alpha: 0.2),
+              ),
+            ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(AppSizes.r8),
               borderSide: BorderSide(
