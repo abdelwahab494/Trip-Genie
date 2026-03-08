@@ -30,7 +30,7 @@ class HeaderSectionComponent extends StatelessWidget {
             // Search bar
             Container(
               width: AppSizes.w358,
-      
+
               decoration: BoxDecoration(
                 color: Theme.of(
                   context,

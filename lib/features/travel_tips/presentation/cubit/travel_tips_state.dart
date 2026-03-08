@@ -5,16 +5,20 @@ abstract class TravelTipsState {}
 
 class TravelTipsInitial extends TravelTipsState {}
 
-class TravelTipsLoading extends TravelTipsState {}
+class TravelTipsLoading extends TravelTipsState {
+  final List<TravelTipModel> tips;
+
+  TravelTipsLoading(this.tips);
+}
 
 class TravelTipsLoaded extends TravelTipsState {
   final List<TravelTipModel> tips;
-  
+
   TravelTipsLoaded(this.tips);
 }
 
 class TravelTipsError extends TravelTipsState {
-  final String message;
+  final List<TravelTipModel> tips;
 
-  TravelTipsError(this.message);
+  TravelTipsError(this.tips);
 }

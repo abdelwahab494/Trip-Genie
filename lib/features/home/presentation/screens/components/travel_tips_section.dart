@@ -6,89 +6,152 @@ class TravelTipsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SliverMainAxisGroup(
-      slivers: [
-        SliverToBoxAdapter(child: TitleSection(title: "Travel Tips")),
-        SliverToBoxAdapter(
-          child: BlocBuilder<TravelTipsCubit, TravelTipsState>(
-            builder: (context, state) {
-              if (state is TravelTipsLoaded) {
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: AppSizes.h150,
-                      child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        physics: const BouncingScrollPhysics(),
-                        itemCount: state.tips.length,
-                        padding: EdgeInsets.symmetric(horizontal: AppSizes.w16),
-                        itemBuilder: (context, index) {
-                          final tip = state.tips[index];
-                          return GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) =>
-                                      TravelTipsDetailsScreen(tips: state.tips),
-                                ),
-                              );
-                            },
-                            child: SmartGuideCard(tip: tip, isLandscape: true),
+    return SliverToBoxAdapter(
+      child: BlocBuilder<TravelTipsCubit, TravelTipsState>(
+        builder: (context, state) {
+          if (state is TravelTipsLoaded) {
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TitleSection(title: "Travel Tips"),
+                SizedBox(
+                  height: AppSizes.h150,
+                  child: ListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    physics: const BouncingScrollPhysics(),
+                    itemCount: state.tips.length,
+                    padding: EdgeInsets.symmetric(horizontal: AppSizes.w16),
+                    itemBuilder: (context, index) {
+                      final tip = state.tips[index];
+                      return GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  TravelTipsDetailsScreen(tips: state.tips),
+                            ),
                           );
                         },
-                      ),
-                    ),
-                  ],
-                );
-              } else if (state is TravelTipsError) {
-                return Center(
-                  child: Text(
-                    state.message,
-                    style: AppFonts.inter14SemiBold(
-                      context,
-                    ).copyWith(color: Theme.of(context).colorScheme.error),
+                        child: SmartGuideCard(tip: tip, isLandscape: true),
+                      );
+                    },
                   ),
-                );
-              } else {
-                return Skeletonizer(
-                  effect: ShimmerEffect(
-                    baseColor: Colors.grey.shade500,
-                    highlightColor: Colors.white,
-                  ),
-                  child: Column(
+                ),
+              ],
+            );
+          } else if (state is TravelTipsError) {
+            return state.tips.isNotEmpty
+                ? Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      TitleSection(title: "Travel Tips"),
                       SizedBox(
                         height: AppSizes.h150,
                         child: ListView.builder(
                           scrollDirection: Axis.horizontal,
                           physics: const BouncingScrollPhysics(),
-                          itemCount: 4,
+                          itemCount: state.tips.length,
                           padding: EdgeInsets.symmetric(
                             horizontal: AppSizes.w16,
                           ),
                           itemBuilder: (context, index) {
-                            return SmartGuideCard(
-                              tip: TravelTipModel(
-                                category: "Loading...",
-                                description:
-                                    "Please wait while we fetch the data.",
+                            final tip = state.tips[index];
+                            return GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        TravelTipsDetailsScreen(
+                                          tips: state.tips,
+                                        ),
+                                  ),
+                                );
+                              },
+                              child: SmartGuideCard(
+                                tip: tip,
+                                isLandscape: true,
                               ),
-                              isLandscape: true,
                             );
                           },
                         ),
                       ),
                     ],
-                  ),
-                );
-              }
-            },
-          ),
-        ),
-      ],
+                  )
+                : SizedBox.shrink();
+          } else if (state is TravelTipsLoading) {
+            return state.tips.isNotEmpty
+                ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TitleSection(title: "Travel Tips"),
+                      SizedBox(
+                        height: AppSizes.h150,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          physics: const BouncingScrollPhysics(),
+                          itemCount: state.tips.length,
+                          padding: EdgeInsets.symmetric(
+                            horizontal: AppSizes.w16,
+                          ),
+                          itemBuilder: (context, index) {
+                            final tip = state.tips[index];
+                            return GestureDetector(
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        TravelTipsDetailsScreen(
+                                          tips: state.tips,
+                                        ),
+                                  ),
+                                );
+                              },
+                              child: SmartGuideCard(
+                                tip: tip,
+                                isLandscape: true,
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ],
+                  )
+                : Skeletonizer(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        TitleSection(title: "Travel Tips"),
+                        SizedBox(
+                          height: AppSizes.h150,
+                          child: ListView.builder(
+                            scrollDirection: Axis.horizontal,
+                            physics: const BouncingScrollPhysics(),
+                            itemCount: 4,
+                            padding: EdgeInsets.symmetric(
+                              horizontal: AppSizes.w16,
+                            ),
+                            itemBuilder: (context, index) {
+                              return SmartGuideCard(
+                                tip: TravelTipModel(
+                                  category: "Loading...",
+                                  description:
+                                      "asdfsdafsadfnbsadklnfbksdamfncsdakl.nfaslkdmnfladk.sfn;lkdsfn",
+                                ),
+                                isLandscape: true,
+                              );
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+          }
+          return SizedBox.shrink();
+        },
+      ),
     );
   }
 }

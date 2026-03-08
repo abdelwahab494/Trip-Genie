@@ -1,3 +1,4 @@
+import 'package:trip_genie/core/local/travel_tips_prefs.dart';
 import 'package:trip_genie/core/manager/app_imports.dart';
 
 part 'travel_tips_state.dart';
@@ -45,13 +46,14 @@ class TravelTipsCubit extends Cubit<TravelTipsState> {
       emit(TravelTipsLoaded(_cachedTips!));
       return;
     }
-
-    emit(TravelTipsLoading());
+    final List<TravelTipModel> tipsCached = TravelTipsPrefs.getTipsList();
+    emit(TravelTipsLoading(tipsCached));
 
     final result = await travelTipsRepo.getTravelTips();
 
-    result.fold(((failure) => emit(TravelTipsError(failure.message))), (tips) {
+    result.fold(((failure) => emit(TravelTipsError(tipsCached))), (tips) async {
       _cachedTips = tips;
+      await TravelTipsPrefs.setTipsList(tips);
       emit(TravelTipsLoaded(tips));
     });
   }
