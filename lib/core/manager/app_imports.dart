@@ -19,6 +19,7 @@ export 'package:trip_genie/core/extensions/dialogs_extension.dart';
 export 'package:trip_genie/core/errors/supbase_faluire.dart';
 export 'package:trip_genie/features/auth/presentation/screens/reset%20password/reset_password_screen.dart';
 export 'package:trip_genie/core/extensions/snack_bar_extension.dart';
+export 'package:trip_genie/core/env/env.dart';
 export 'package:trip_genie/features/home/data/models/cities_model.dart';
 export 'package:trip_genie/core/manager/app_colors.dart';
 export 'package:trip_genie/core/manager/app_fonts.dart';
@@ -28,6 +29,7 @@ export 'package:trip_genie/features/home/data/service/cities_database_service.da
 export 'package:trip_genie/features/travel_tips/data/models/travel_tip_model.dart';
 export 'package:trip_genie/core/networking/supabase_helper.dart';
 export 'package:trip_genie/core/routing/routing.dart';
+export 'package:envied/envied.dart';
 export 'package:trip_genie/core/theme/dark_theme/dark_theme.dart';
 export 'package:trip_genie/core/theme/light_theme/light_colors.dart';
 export 'package:trip_genie/core/theme/light_theme/light_theme.dart';
