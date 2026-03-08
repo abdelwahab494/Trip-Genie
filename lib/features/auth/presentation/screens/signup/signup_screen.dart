@@ -98,7 +98,10 @@ class _SignupScreenState extends State<SignupScreen> with FormHelperMixin {
                                   result = await context.showActionDialog(
                                     title: s.accountCreated,
                                     contentText:
-                                        "${s.wevesentyouaconfirmationemail}\n${s.checkyourinboxandclickthelinktoverifyyouraccount} ${s.thenTryToLogin}",
+                                        s.wevesentyouaconfirmationemail,
+                                    secContentText: s
+                                        .checkyourinboxandclickthelinktoverifyyouraccount,
+                                    thirdContentText: s.thenTryToLogin,
                                     action: s.ok,
                                   );
                                   if (result == true) {

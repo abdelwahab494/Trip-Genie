@@ -12,9 +12,9 @@ class AuthCubit extends Cubit<AuthState> {
 
     final result = await authRepo.signIn(email: email, password: password);
 
-    result.fold((failure) => emit(AuthError(failure.message)), (response) {
-      if (response.user != null) {
-        emit(AuthSuccess(response.user!));
+    result.fold((failure) => emit(AuthError(failure.message)), (model) {
+      if (model.id != null) {
+        emit(AuthSuccess(model));
       } else {
         emit(AuthError("User not found"));
       }
@@ -34,9 +34,9 @@ class AuthCubit extends Cubit<AuthState> {
       password: password,
     );
 
-    result.fold((failure) => emit(AuthError(failure.message)), (response) {
-      if (response.user != null) {
-        emit(AuthSuccess(response.user!));
+    result.fold((failure) => emit(AuthError(failure.message)), (model) {
+      if (model.id != null) {
+        emit(AuthSuccess(model));
       } else {
         emit(AuthError("User not found"));
       }
@@ -51,6 +51,36 @@ class AuthCubit extends Cubit<AuthState> {
     result.fold(
       (failure) => emit(AuthError(failure.message)),
       (_) => emit(AuthSignedOut()),
+    );
+  }
+
+  Future<void> requestResetToken(String email) async {
+    emit(AuthLoading());
+
+    final result = await authRepo.requestResetToken(email);
+
+    result.fold(
+      (failure) => emit(AuthError(failure.message)),
+      (_) => emit(AuthReset()),
+    );
+  }
+
+  Future<void> verifyAndUpdatePassword({
+    required String email,
+    required String resetToken,
+    required String password,
+  }) async {
+    emit(AuthLoading());
+
+    final result = await authRepo.verifyAndUpdatePassword(
+      email: email,
+      resetToken: resetToken,
+      password: password,
+    );
+
+    result.fold(
+      (failure) => emit(AuthError(failure.message)),
+      (_) => emit(AuthReset()),
     );
   }
 }

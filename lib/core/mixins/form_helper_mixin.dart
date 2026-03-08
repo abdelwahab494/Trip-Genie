@@ -17,7 +17,7 @@ mixin FormHelperMixin<T extends StatefulWidget> on State<T> {
 
   String? nameValidator(String? value) {
     if (value == null || value.trim().isEmpty) {
-      return S.of(context).pleaseEnterYourName;
+      return S.of(context).thisFieldIsRequired;
     }
     return null;
   }

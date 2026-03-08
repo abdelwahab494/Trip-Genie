@@ -275,6 +275,16 @@ class S {
     );
   }
 
+  /// `This Field Is Required!`
+  String get thisFieldIsRequired {
+    return Intl.message(
+      'This Field Is Required!',
+      name: 'thisFieldIsRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Please Enter Your Email.`
   String get pleaseEnterYourEmail {
     return Intl.message(
@@ -378,6 +388,156 @@ class S {
   /// `Ok`
   String get ok {
     return Intl.message('Ok', name: 'ok', desc: '', args: []);
+  }
+
+  /// `Forgor your Password?`
+  String get forgoryourpassword {
+    return Intl.message(
+      'Forgor your Password?',
+      name: 'forgoryourpassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your email address below and we'll send you a reset token.`
+  String get enteryouremailaddressbelowandwellsendyouaresettoken {
+    return Intl.message(
+      'Enter your email address below and we\'ll send you a reset token.',
+      name: 'enteryouremailaddressbelowandwellsendyouaresettoken',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send Reset Token`
+  String get sendResetToken {
+    return Intl.message(
+      'Send Reset Token',
+      name: 'sendResetToken',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Already have a`
+  String get alreadyhavea {
+    return Intl.message(
+      'Already have a',
+      name: 'alreadyhavea',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` Token?`
+  String get token {
+    return Intl.message(' Token?', name: 'token', desc: '', args: []);
+  }
+
+  /// `Reset Password`
+  String get resetPassword {
+    return Intl.message(
+      'Reset Password',
+      name: 'resetPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reset Token`
+  String get resetToken {
+    return Intl.message('Reset Token', name: 'resetToken', desc: '', args: []);
+  }
+
+  /// `New Password`
+  String get newPassword {
+    return Intl.message(
+      'New Password',
+      name: 'newPassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create new password`
+  String get createnewpassword {
+    return Intl.message(
+      'Create new password',
+      name: 'createnewpassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your reset token from your email and set a new password.`
+  String get enteryourresettokenfromyouremailandsetanewpassword {
+    return Intl.message(
+      'Enter your reset token from your email and set a new password.',
+      name: 'enteryourresettokenfromyouremailandsetanewpassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Check Your Email`
+  String get checkYourEmail {
+    return Intl.message(
+      'Check Your Email',
+      name: 'checkYourEmail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We've sent a reset token to your email.`
+  String get wevesentaresettokentoyouremail {
+    return Intl.message(
+      'We\'ve sent a reset token to your email.',
+      name: 'wevesentaresettokentoyouremail',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please check your inbox and use the token to reset your password.`
+  String get pleasecheckyourinboxandusethetokentoresetyourpassword {
+    return Intl.message(
+      'Please check your inbox and use the token to reset your password.',
+      name: 'pleasecheckyourinboxandusethetokentoresetyourpassword',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password Reset Successful`
+  String get passwordResetSuccessful {
+    return Intl.message(
+      'Password Reset Successful',
+      name: 'passwordResetSuccessful',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your password has been updated successfully.`
+  String get yourpasswordhasbeenupdatedsuccessfully {
+    return Intl.message(
+      'Your password has been updated successfully.',
+      name: 'yourpasswordhasbeenupdatedsuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You can now use your new password to log in to your account.`
+  String get youcannowuseyournewpasswordtologintoyouraccount {
+    return Intl.message(
+      'You can now use your new password to log in to your account.',
+      name: 'youcannowuseyournewpasswordtologintoyouraccount',
+      desc: '',
+      args: [],
+    );
   }
 }
 
