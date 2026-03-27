@@ -539,6 +539,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Personalize Your Trip`
+  String get personalizeYourTrip {
+    return Intl.message(
+      'Personalize Your Trip',
+      name: 'personalizeYourTrip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Step`
+  String get step {
+    return Intl.message('Step', name: 'step', desc: '', args: []);
+  }
+
+  /// `of`
+  String get Of {
+    return Intl.message('of', name: 'Of', desc: '', args: []);
+  }
+
+  /// `Complete`
+  String get complete {
+    return Intl.message('Complete', name: 'complete', desc: '', args: []);
+  }
+
+  /// `Continue`
+  String get Continue {
+    return Intl.message('Continue', name: 'Continue', desc: '', args: []);
+  }
+
+  /// `Generate My Plan`
+  String get generateMyPlan {
+    return Intl.message(
+      'Generate My Plan',
+      name: 'generateMyPlan',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

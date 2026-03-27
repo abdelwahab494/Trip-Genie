@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "769565171813",
+    "project_id": "trip-genie-89de5",
+    "storage_bucket": "trip-genie-89de5.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:769565171813:android:9cab9e2179460028da268c",
+        "android_client_info": {
+          "package_name": "com.example.trip_genie"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCR8eTZYEteEn2U4pUW5svwbjzrYRftAdU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

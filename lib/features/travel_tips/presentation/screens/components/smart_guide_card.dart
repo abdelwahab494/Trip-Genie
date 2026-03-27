@@ -59,7 +59,7 @@ class SmartGuideCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(AppSizes.r12),
       ),
       child: Icon(
-        _getIconForCategory(tip.category),
+        tip.icon.isNotEmpty ? tip.icon.toIcon : Icons.lightbulb_outline,
         color: Theme.of(context).colorScheme.onPrimary,
         size: 24,
       ),
@@ -72,7 +72,7 @@ class SmartGuideCard extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          tip.category,
+          tip.title.isNotEmpty ? tip.title : "Travel Tip",
           style: AppFonts.inter16Medium(context).copyWith(
             color: Theme.of(context).colorScheme.onSurface,
             fontWeight: FontWeight.bold,
@@ -80,7 +80,9 @@ class SmartGuideCard extends StatelessWidget {
         ),
         Gap(AppSizes.h4),
         Text(
-          tip.description,
+          tip.description.isNotEmpty
+              ? tip.description
+              : "No description available",
           maxLines: maxLines,
           overflow: TextOverflow.ellipsis,
           style: AppFonts.aBeeZee4Bold(
@@ -91,14 +93,14 @@ class SmartGuideCard extends StatelessWidget {
     );
   }
 
-  IconData _getIconForCategory(String category) {
-    if (category.contains("Currency")) return Icons.payments_outlined;
-    if (category.contains("Time")) return Icons.wb_sunny_outlined;
-    if (category.contains("Transportation")) {
-      return Icons.directions_bus_outlined;
-    }
-    if (category.contains("Culture")) return Icons.temple_hindu_outlined;
-    if (category.contains("Connectivity")) return Icons.wifi;
-    return Icons.lightbulb_outline;
-  }
+  // IconData _getIconForCategory(String category) {
+  //   if (category.contains("Currency")) return Icons.payments_outlined;
+  //   if (category.contains("Time")) return Icons.wb_sunny_outlined;
+  //   if (category.contains("Transportation")) {
+  //     return Icons.directions_bus_outlined;
+  //   }
+  //   if (category.contains("Culture")) return Icons.temple_hindu_outlined;
+  //   if (category.contains("Connectivity")) return Icons.wifi;
+  //   return Icons.lightbulb_outline;
+  // }
 }

@@ -22,6 +22,8 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "Continue": MessageLookupByLibrary.simpleMessage("Continue"),
+    "Of": MessageLookupByLibrary.simpleMessage("of"),
     "accountCreated": MessageLookupByLibrary.simpleMessage("Account Created!"),
     "alreadyHaveAnAccount": MessageLookupByLibrary.simpleMessage(
       "Already have an account?",
@@ -32,6 +34,7 @@ class MessageLookup extends MessageLookupByLibrary {
         MessageLookupByLibrary.simpleMessage(
           "Check your inbox and click the link to verify your account.",
         ),
+    "complete": MessageLookupByLibrary.simpleMessage("Complete"),
     "confirmPassword": MessageLookupByLibrary.simpleMessage("Confirm Password"),
     "confirmYourPassword": MessageLookupByLibrary.simpleMessage(
       "Confirm Your Password",
@@ -66,6 +69,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "forgotPassword": MessageLookupByLibrary.simpleMessage("Forgot Password?"),
     "fullName": MessageLookupByLibrary.simpleMessage("Full Name"),
+    "generateMyPlan": MessageLookupByLibrary.simpleMessage("Generate My Plan"),
     "hidePassword": MessageLookupByLibrary.simpleMessage("Hide Password"),
     "invalidEmailFormat": MessageLookupByLibrary.simpleMessage(
       "Invalid Email Format!",
@@ -88,6 +92,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "passwordshouldbe8charsormore": MessageLookupByLibrary.simpleMessage(
       "Password should be 8 chars or more!",
+    ),
+    "personalizeYourTrip": MessageLookupByLibrary.simpleMessage(
+      "Personalize Your Trip",
     ),
     "pleaseConfirmYourPassword": MessageLookupByLibrary.simpleMessage(
       "Please Confirm Your Password.",
@@ -114,6 +121,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "showPassword": MessageLookupByLibrary.simpleMessage("Show Password"),
     "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
     "smartEgyptDay": MessageLookupByLibrary.simpleMessage("Smart Egypt Day"),
+    "step": MessageLookupByLibrary.simpleMessage("Step"),
     "thenTryToLogin": MessageLookupByLibrary.simpleMessage(
       "Then Try To Login.",
     ),

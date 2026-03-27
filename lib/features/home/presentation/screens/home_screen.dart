@@ -18,10 +18,8 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => UserCubit(AuthRepoImpl(AuthService())),
+      create: (context) => getIt<UserCubit>(),
       child: Scaffold(
-        bottomNavigationBar: const HomeBottomNavigationBarComponent(),
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         body: RefreshIndicator(
           onRefresh: () async {
             await Future.wait([
@@ -49,6 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
         ),
+        bottomNavigationBar: const HomeBottomNavigationBarComponent(),
       ),
     );
   }

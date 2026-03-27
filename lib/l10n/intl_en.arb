@@ -52,7 +52,13 @@
   "checkYourEmail": "Check Your Email",
   "wevesentaresettokentoyouremail": "We've sent a reset token to your email.",
   "pleasecheckyourinboxandusethetokentoresetyourpassword": "Please check your inbox and use the token to reset your password.",
-  "passwordResetSuccessful":"Password Reset Successful",
-  "yourpasswordhasbeenupdatedsuccessfully":"Your password has been updated successfully.",
-  "youcannowuseyournewpasswordtologintoyouraccount":"You can now use your new password to log in to your account."
+  "passwordResetSuccessful": "Password Reset Successful",
+  "yourpasswordhasbeenupdatedsuccessfully": "Your password has been updated successfully.",
+  "youcannowuseyournewpasswordtologintoyouraccount": "You can now use your new password to log in to your account.",
+  "personalizeYourTrip": "Personalize Your Trip",
+  "step": "Step",
+  "Of": "of",
+  "complete": "Complete",
+  "Continue": "Continue",
+  "generateMyPlan": "Generate My Plan"
 }

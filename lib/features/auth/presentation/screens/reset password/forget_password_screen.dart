@@ -1,3 +1,4 @@
+import 'package:trip_genie/core/extensions/colors_extension.dart';
 import 'package:trip_genie/core/manager/app_imports.dart' hide AuthState;
 import 'package:trip_genie/features/auth/presentation/cubit/auth_cubit.dart';
 
@@ -20,15 +21,13 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen>
   @override
   Widget build(BuildContext context) {
     final S s = S.of(context);
-    final ThemeData theme = Theme.of(context);
 
     return BlocProvider(
-      create: (context) => AuthCubit(AuthRepoImpl(AuthService())),
+      create: (context) => getIt<AuthCubit>(),
       child: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: Scaffold(
-          backgroundColor: LightColors.secBackground,
-          appBar: AppBar(backgroundColor: LightColors.secBackground),
+          appBar: AppBar(),
           body: SingleChildScrollView(
             child: Padding(
               padding: EdgeInsets.symmetric(
@@ -43,15 +42,16 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen>
                   children: [
                     Text(
                       s.forgoryourpassword,
-                      style: AppFonts.inter30Bold(
-                        context,
-                      ).copyWith(fontSize: AppSizes.sp28),
+                      style: AppFonts.inter30Bold(context).copyWith(
+                        fontSize: AppSizes.sp28,
+                        color: context.firstText,
+                      ),
                     ),
                     Gap(AppSizes.h10),
                     Text(
                       s.enteryouremailaddressbelowandwellsendyouaresettoken,
                       style: AppFonts.inter16Medium(context).copyWith(
-                        color: theme.colorScheme.tertiary,
+                        color: context.thirdText,
                         fontWeight: FontWeight.normal,
                         fontSize: AppSizes.sp14,
                       ),
@@ -115,14 +115,14 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen>
                             text: s.alreadyhavea,
                             style: AppFonts.inter14SemiBold(
                               context,
-                            ).copyWith(color: theme.colorScheme.tertiary),
+                            ).copyWith(color: context.thirdText),
                           ),
                           TextSpan(text: " "),
                           TextSpan(
                             text: s.token,
                             style: AppFonts.inter14SemiBold(
                               context,
-                            ).copyWith(color: theme.colorScheme.primary),
+                            ).copyWith(color: context.primary),
                             recognizer: TapGestureRecognizer()
                               ..onTap = () {
                                 Navigator.of(context).push(

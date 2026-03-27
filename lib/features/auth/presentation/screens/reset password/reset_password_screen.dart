@@ -1,3 +1,4 @@
+import 'package:trip_genie/core/extensions/colors_extension.dart';
 import 'package:trip_genie/core/manager/app_imports.dart' hide AuthState;
 import 'package:trip_genie/features/auth/presentation/cubit/auth_cubit.dart';
 
@@ -22,31 +23,12 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen>
   @override
   Widget build(BuildContext context) {
     final S s = S.of(context);
-    final ThemeData theme = Theme.of(context);
-
     return BlocProvider(
-      create: (context) => AuthCubit(AuthRepoImpl(AuthService())),
+      create: (context) => getIt<AuthCubit>(),
       child: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: Scaffold(
-          backgroundColor: LightColors.secBackground,
-          appBar: AppBar(
-            backgroundColor: LightColors.secBackground,
-            elevation: 0,
-            scrolledUnderElevation: 0,
-            leading: IconButton(
-              onPressed: () => Navigator.pop(context),
-              padding: EdgeInsets.zero,
-              icon: Icon(Icons.arrow_back, color: theme.colorScheme.primary),
-            ),
-            titleSpacing: 0,
-            title: Text(
-              s.resetPassword,
-              style: AppFonts.inter16Medium(
-                context,
-              ).copyWith(color: theme.colorScheme.onSurface),
-            ),
-          ),
+          appBar: AppBar(),
           body: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -59,15 +41,16 @@ class _ResetPasswordScreenState extends State<ResetPasswordScreen>
                     Gap(AppSizes.h20),
                     Text(
                       s.createnewpassword,
-                      style: AppFonts.inter30Bold(
-                        context,
-                      ).copyWith(fontSize: AppSizes.sp28),
+                      style: AppFonts.inter30Bold(context).copyWith(
+                        fontSize: AppSizes.sp28,
+                        color: context.firstText,
+                      ),
                     ),
                     Gap(AppSizes.h10),
                     Text(
                       s.enteryourresettokenfromyouremailandsetanewpassword,
                       style: AppFonts.inter16Medium(context).copyWith(
-                        color: theme.colorScheme.tertiary,
+                        color: context.thirdText,
                         fontWeight: FontWeight.normal,
                         fontSize: AppSizes.sp14,
                       ),

@@ -12,16 +12,8 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MultiBlocProvider(
           providers: [
-            BlocProvider(
-              create: (context) => HomeCubit(
-                HomeRepoImpl(citiesDatabaseService: CitiesDatabaseService()),
-              ), // Pass the GeminiService to the HomeRepoImpl
-            ),
-            BlocProvider(
-              create: (context) => TravelTipsCubit(
-                TravelTipsRepoImpl(TravelTipsService()),
-              ), // Pass the GeminiService to the TravelTipsRepoImp
-            ),
+            BlocProvider(create: (context) => getIt<HomeCubit>()),
+            BlocProvider(create: (context) => getIt<TravelTipsCubit>()),
           ],
           child: MaterialApp(
             onGenerateRoute: Routing.generateRoute,
@@ -35,8 +27,8 @@ class MyApp extends StatelessWidget {
               GlobalCupertinoLocalizations.delegate,
             ],
             supportedLocales: S.delegate.supportedLocales,
-            theme: lightTheme,
-            darkTheme: darkTheme,
+            theme: AppTheme.lightTheme,
+            darkTheme: AppTheme.darkTheme,
             themeMode: ThemeMode.light,
             home: AuthGate(),
           ),

@@ -136,7 +136,8 @@ class TravelTipsSection extends StatelessWidget {
                             itemBuilder: (context, index) {
                               return SmartGuideCard(
                                 tip: TravelTipModel(
-                                  category: "Loading...",
+                                  icon: "abc",
+                                  title: "Loading...",
                                   description:
                                       "asdfsdafsadfnbsadklnfbksdamfncsdakl.nfaslkdmnfladk.sfn;lkdsfn",
                                 ),
