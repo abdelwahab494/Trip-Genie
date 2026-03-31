@@ -68,11 +68,7 @@ class CityCard extends StatelessWidget {
                 InkWell(
                   onTap: () => Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (c) => BlocProvider(
-                        create: (context) =>
-                            getIt<TripInfoCubit>()..getTripCategories(city.id!),
-                        child: TravelInfoScreen(city: city),
-                      ),
+                      builder: (c) => TravelInfoScreen(city: city),
                     ),
                   ),
                   child: ExploreButton(),

@@ -75,5 +75,7 @@
   "chooseTheDuration": "Choose the duration that best fits your travel style and schedule.",
   "halfDay": "Half Day",
   "fullDay": "Full Day",
-  "multiDay": "Multi Day"
+  "multiDay": "Multi Day",
+  "whatsyourtravelstyle":"What's your travel style?",
+  "choosethepersona":"Choose the persona that best fits your journey in Egypt. We'll tailor your itinerary based on this choice."
 }

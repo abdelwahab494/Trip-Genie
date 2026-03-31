@@ -1,8 +1,8 @@
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:trip_genie/core/manager/app_imports.dart';
 
-class DurationView extends StatelessWidget {
-  const DurationView({super.key});
+class CategoryView extends StatelessWidget {
+  const CategoryView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +14,7 @@ class DurationView extends StatelessWidget {
         slivers: [
           SliverToBoxAdapter(
             child: Text(
-              s.howlongisyourjourney,
+              s.whatsyourtravelstyle,
               style: AppFonts.inter30Bold(
                 context,
               ).copyWith(color: context.firstText),
@@ -23,7 +23,7 @@ class DurationView extends StatelessWidget {
           SliverGap(AppSizes.h12),
           SliverToBoxAdapter(
             child: Text(
-              s.chooseTheDuration,
+              s.choosethepersona,
               style: AppFonts.inter16Medium(context).copyWith(
                 fontWeight: FontWeight.normal,
                 color: context.thirdText,
@@ -62,17 +62,17 @@ class DurationView extends StatelessWidget {
 
   Widget _buildDurationsList(TripInfoLoaded state) {
     return SliverList.separated(
-      itemCount: state.tripDurationsList.length,
+      itemCount: state.tripCategories.length,
       separatorBuilder: (_, __) => Gap(AppSizes.h14),
       itemBuilder: (context, index) {
-        final isSelected = state.selectedDurationIndex == index;
-        final durationText = state.tripDurationsList[index];
+        final isSelected = state.selectedStyleIndex == index;
+        final durationText = state.tripCategories[index];
 
         return OptionCard(
           text: durationText,
           isSelected: isSelected,
-          onTap: () => context.read<TripInfoCubit>().selectDuration(index),
-          icon: Icons.access_time_filled,
+          onTap: () => context.read<TripInfoCubit>().selectStyle(index),
+          icon: Icons.explore,
         );
       },
     );

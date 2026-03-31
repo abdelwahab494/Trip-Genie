@@ -811,6 +811,26 @@ class S {
       args: [],
     );
   }
+
+  /// `What's your travel style?`
+  String get whatsyourtravelstyle {
+    return Intl.message(
+      'What\'s your travel style?',
+      name: 'whatsyourtravelstyle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose the persona that best fits your journey in Egypt. We'll tailor your itinerary based on this choice.`
+  String get choosethepersona {
+    return Intl.message(
+      'Choose the persona that best fits your journey in Egypt. We\'ll tailor your itinerary based on this choice.',
+      name: 'choosethepersona',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -1,17 +1,11 @@
 import 'package:trip_genie/core/manager/app_imports.dart';
 
 class TripInfoService {
-  Future<List<String>> getPlacesCategories(String cityId) async {
+  Future<List<Map<String, dynamic>>> getPlacesForCity(String cityId) async {
     final response = await SupabaseHelper.supabaseClient
         .from(SupabaseHelper.placesTable)
-        .select(SupabaseHelper.placesCategoryColumn)
+        .select()
         .eq(SupabaseHelper.placesCityIdColumn, cityId);
-    final categories = response
-        .map<String>(
-          (place) => place[SupabaseHelper.placesCategoryColumn] as String,
-        )
-        .toSet()
-        .toList();
-    return categories;
+    return response;
   }
 }

@@ -9,6 +9,7 @@ export 'package:flutter_localizations/flutter_localizations.dart';
 export 'package:flutter_screenutil/flutter_screenutil.dart';
 export 'package:trip_genie/core/theme/app_theme.dart';
 export 'package:gap/gap.dart';
+export 'package:trip_genie/features/trip_info/data/models/places_model.dart';
 export 'package:get_it/get_it.dart';
 export 'package:trip_genie/features/trip_info/data/services/trip_info_service.dart';
 export 'package:trip_genie/features/trip_info/domain/repos/trip_info_repo.dart';
@@ -22,8 +23,10 @@ export 'package:trip_genie/features/trip_info/presentation/screens/views/duratio
 export 'package:trip_genie/features/trip_info/di/trip_info_injection.dart';
 export 'package:trip_genie/features/trip_info/presentation/cubit/trip_info_cubit.dart';
 export 'package:trip_genie/core/di/service_locator.dart';
+export 'package:trip_genie/core/extensions/capitalize_extension.dart';
 export 'package:trip_genie/core/enums/text_field_types_enum.dart';
 export 'package:trip_genie/core/enums/user_meta_data_enum.dart';
+export 'package:trip_genie/features/trip_info/presentation/screens/components/option_card.dart';
 export 'package:trip_genie/core/env/env.dart';
 export 'package:trip_genie/core/errors/faluire.dart';
 export 'package:trip_genie/core/errors/gemini_faluire.dart';

@@ -7,29 +7,43 @@ class TripInfoCubit extends Cubit<TripInfoState> {
 
   TripInfoCubit(this.repo) : super(TripInfoInitial());
 
-  void changeState({
-    int? selectedTripDuration,
-    int? selectedTripStyle,
-    int? currentPage,
-  }) {
-    if (state is! TripInfoLoaded) return;
-    final currentState = state as TripInfoLoaded;
-    emit(
-      currentState.copyWith(
-        currentPage: currentPage,
-        selectedTripStyle: selectedTripStyle,
-        selectedTripDuration: selectedTripDuration,
-      ),
+  Future<void> getPlacesForCity(String cityId) async {
+    emit(TripInfoLoading());
+    final result = await repo.getPlacesForCity(cityId);
+
+    result.fold(
+      (failure) => emit(TripInfoError("Failed To Get Categories")),
+      (placesList) => emit(TripInfoLoaded(placesList: placesList)),
     );
   }
 
-  Future<void> getTripCategories(String cityId) async {
-    emit(TripInfoLoading());
-    final result = await repo.getTripCategories(cityId);
+  void updateStep({required int step}) {
+    if (state case TripInfoLoaded loaded) {
+      emit(loaded.copyWith(currentStep: step));
+    }
+  }
 
-    result.fold(
-      (failure) => emit(TripInfoError(message: "Failed To Get Categories")),
-      (categories) => emit(TripInfoLoaded(tripCategories: categories)),
-    );
+  void selectDuration(int index) {
+    if (state case TripInfoLoaded loaded) {
+      emit(loaded.copyWith(selectedDurationIndex: index));
+    }
+  }
+
+  void selectStyle(int index) {
+    if (state case TripInfoLoaded loaded) {
+      emit(loaded.copyWith(selectedStyleIndex: index));
+    }
+  }
+
+  void startPlan() {
+    if (state case TripInfoLoaded loaded) {
+      emit(
+        TripStartPLan(
+          placesList: loaded.placesList,
+          tripDuration: loaded.selectedDuration,
+          tripStyle: loaded.tripCategories[loaded.selectedStyleIndex ?? 0],
+        ),
+      );
+    }
   }
 }

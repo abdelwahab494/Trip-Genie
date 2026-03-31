@@ -1,3 +1,4 @@
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:trip_genie/core/manager/app_imports.dart';
 
 class TopPrograssBar extends StatelessWidget {
@@ -6,7 +7,6 @@ class TopPrograssBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final S s = S.of(context);
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: AppSizes.w16,
@@ -17,37 +17,11 @@ class TopPrograssBar extends StatelessWidget {
           BlocBuilder<TripInfoCubit, TripInfoState>(
             builder: (context, state) {
               if (state is! TripInfoLoaded) {
-                return SizedBox.shrink();
+                return Skeletonizer(child: PrograssBar.skeleton());
               }
-              return Column(
-                spacing: AppSizes.h8,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "${s.step} ${state.currentPage + 1} ${s.Of} $pagesCount",
-                        style: AppFonts.inter24Bold(context).copyWith(
-                          fontSize: AppSizes.sp12,
-                          color: context.thirdText,
-                        ),
-                      ),
-                      Text(
-                        "${(((state.currentPage + 1) / pagesCount) * 100).round()}% ${s.complete}",
-                        style: AppFonts.inter14SemiBold(context).copyWith(
-                          fontWeight: FontWeight.normal,
-                          fontSize: AppSizes.sp12,
-                          color: context.thirdText,
-                        ),
-                      ),
-                    ],
-                  ),
-                  LinearProgressIndicator(
-                    value: (state.currentPage + 1) / pagesCount,
-                    color: context.primary,
-                    minHeight: AppSizes.h6,
-                  ),
-                ],
+              return PrograssBar(
+                pagesCount: pagesCount,
+                currentPage: state.currentStep,
               );
             },
           ),
@@ -55,6 +29,53 @@ class TopPrograssBar extends StatelessWidget {
           Divider(color: context.forthText),
         ],
       ),
+    );
+  }
+}
+
+class PrograssBar extends StatelessWidget {
+  const PrograssBar({
+    super.key,
+    required this.pagesCount,
+    required this.currentPage,
+  });
+
+  final int pagesCount;
+  final int currentPage;
+
+  const PrograssBar.skeleton({super.key}) : pagesCount = 1, currentPage = 0;
+
+  @override
+  Widget build(BuildContext context) {
+    final S s = S.of(context);
+    return Column(
+      spacing: AppSizes.h8,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              "${s.step} ${currentPage + 1} ${s.Of} $pagesCount",
+              style: AppFonts.inter24Bold(
+                context,
+              ).copyWith(fontSize: AppSizes.sp12, color: context.thirdText),
+            ),
+            Text(
+              "${(((currentPage + 1) / pagesCount) * 100).round()}% ${s.complete}",
+              style: AppFonts.inter14SemiBold(context).copyWith(
+                fontWeight: FontWeight.normal,
+                fontSize: AppSizes.sp12,
+                color: context.thirdText,
+              ),
+            ),
+          ],
+        ),
+        LinearProgressIndicator(
+          value: (currentPage + 1) / pagesCount,
+          color: context.primary,
+          minHeight: AppSizes.h6,
+        ),
+      ],
     );
   }
 }

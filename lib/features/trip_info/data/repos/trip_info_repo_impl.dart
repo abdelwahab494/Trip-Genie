@@ -7,10 +7,15 @@ class TripInfoRepoImpl extends TripInfoRepo {
   TripInfoRepoImpl(this.service);
 
   @override
-  Future<Either<Failure, List<String>>> getTripCategories(String cityId) async {
+  Future<Either<Failure, List<PlacesModel>>> getPlacesForCity(
+    String cityId,
+  ) async {
     try {
-      final result = await service.getPlacesCategories(cityId);
-      return Right(result);
+      final result = await service.getPlacesForCity(cityId);
+      final List<PlacesModel> placesList = result
+          .map((place) => PlacesModel.fromMap(place))
+          .toList();
+      return Right(placesList);
     } catch (e) {
       return Left(SupabaseFailure.fromException(e));
     }

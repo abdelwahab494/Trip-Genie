@@ -36,6 +36,8 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Check your inbox and click the link to verify your account."),
         "chooseTheDuration": MessageLookupByLibrary.simpleMessage(
             "Choose the duration that best fits your travel style and schedule."),
+        "choosethepersona": MessageLookupByLibrary.simpleMessage(
+            "Choose the persona that best fits your journey in Egypt. We\'ll tailor your itinerary based on this choice."),
         "complete": MessageLookupByLibrary.simpleMessage("Complete"),
         "confirmPassword":
             MessageLookupByLibrary.simpleMessage("Confirm Password"),
@@ -146,6 +148,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "We\'ve sent a reset token to your email."),
         "wevesentyouaconfirmationemail": MessageLookupByLibrary.simpleMessage(
             "We’ve sent you a confirmation email."),
+        "whatsyourtravelstyle":
+            MessageLookupByLibrary.simpleMessage("What\'s your travel style?"),
         "youcannowuseyournewpasswordtologintoyouraccount":
             MessageLookupByLibrary.simpleMessage(
                 "You can now use your new password to log in to your account."),
