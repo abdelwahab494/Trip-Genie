@@ -1,5 +1,4 @@
 import 'package:flutter/services.dart';
-import 'package:trip_genie/core/extensions/colors_extension.dart';
 import 'package:trip_genie/core/manager/app_imports.dart';
 
 class CustomTextField extends StatefulWidget {

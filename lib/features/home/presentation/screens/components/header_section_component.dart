@@ -8,7 +8,6 @@ class HeaderSectionComponent extends StatelessWidget {
     final S s = S.of(context);
     return SliverToBoxAdapter(
       child: Container(
-        color: Colors.white,
         padding: EdgeInsets.fromLTRB(
           AppSizes.w20,
           AppSizes.h24,
@@ -24,17 +23,14 @@ class HeaderSectionComponent extends StatelessWidget {
               s.selectyourcitytobeginyourjourney,
               style: AppFonts.inter16Medium(
                 context,
-              ).copyWith(color: Theme.of(context).colorScheme.primary),
+              ).copyWith(color: context.primary),
             ),
             Gap(AppSizes.h16),
             // Search bar
             Container(
               width: AppSizes.w358,
-
               decoration: BoxDecoration(
-                color: Theme.of(
-                  context,
-                ).colorScheme.surface.withValues(alpha: 0.7),
+                color: context.secBackground.withValues(alpha: 0.7),
                 borderRadius: BorderRadius.circular(AppSizes.r8),
               ),
               child: CustomTextFieldHome(

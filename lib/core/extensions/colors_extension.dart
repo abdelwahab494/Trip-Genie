@@ -18,4 +18,6 @@ extension ColorsExtension on BuildContext {
   Color get forthText => colorScheme.onTertiaryFixed;
 
   Color get border => colorScheme.outline;
+
+  Color get error => colorScheme.error;
 }

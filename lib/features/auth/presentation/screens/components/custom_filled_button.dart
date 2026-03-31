@@ -1,4 +1,3 @@
-import 'package:trip_genie/core/extensions/colors_extension.dart';
 import 'package:trip_genie/core/manager/app_imports.dart';
 
 class CustomFilledButton extends StatelessWidget {

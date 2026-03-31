@@ -21,7 +21,7 @@ class AuthGate extends StatelessWidget {
         final bool isLoggedIn = snapshot.data?.session?.user != null;
 
         if (isLoggedIn) {
-          return const HomeScreen();
+          return const NavigationRoot();
         }
         return const LoginScreen();
       },

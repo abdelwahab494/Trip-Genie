@@ -10,19 +10,15 @@ class CachedImageWidget extends StatelessWidget {
       imageUrl: imageUrl,
       fit: BoxFit.cover,
       placeholder: (context, url) => Container(
-        color: Colors.grey.shade200,
-        child: const Center(
-          child: CircularProgressIndicator(
-            // color: AppColors.primary,
-          ),
-        ),
+        color: context.forthText.withValues(alpha: 0.2),
+        child: const Center(child: CircularProgressIndicator()),
       ),
       errorWidget: (context, url, error) => Container(
-        color: Colors.grey.shade300,
-        child: const Icon(
+        color: context.forthText.withValues(alpha: 0.3),
+        child: Icon(
           Icons.broken_image_outlined,
           size: 40,
-          color: Colors.grey,
+          color: context.forthText,
         ),
       ),
     );

@@ -1,4 +1,4 @@
-import 'package:trip_genie/core/extensions/colors_extension.dart';
+import 'package:trip_genie/core/extensions/snack_bar_extension.dart';
 import 'package:trip_genie/core/manager/app_imports.dart' hide AuthState;
 import 'package:trip_genie/features/auth/presentation/cubit/auth_cubit.dart';
 

@@ -17,16 +17,16 @@ class TravelTipsCubit extends Cubit<TravelTipsState> {
     final List<TravelTipModel> tipsCached = TravelTipsPrefs.getTipsList();
     emit(TravelTipsLoading(tipsCached));
 
-    print("start loading ..");
+    debugPrint("start loading ..");
     final result = await travelTipsRepo.getTravelTips();
 
     result.fold(
       ((failure) {
-        print(failure.message);
+        debugPrint(failure.message);
         emit(TravelTipsError(tipsCached));
       }),
       (tips) async {
-        print("sucess");
+        debugPrint("sucess");
         _cachedTips = tips;
         emit(TravelTipsLoaded(tips));
         await TravelTipsPrefs.setTipsList(tips);

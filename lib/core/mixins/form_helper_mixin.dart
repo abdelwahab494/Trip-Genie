@@ -26,7 +26,7 @@ mixin FormHelperMixin<T extends StatefulWidget> on State<T> {
     if (value == null || value.trim().isEmpty) {
       return S.of(context).pleaseEnterYourEmail;
     }
-    if (!value.endsWith("@gmail.com")) {
+    if (!value.endsWith("@gmail.com") || value.contains(" ")) {
       return S.of(context).invalidEmailFormat;
     }
     return null;

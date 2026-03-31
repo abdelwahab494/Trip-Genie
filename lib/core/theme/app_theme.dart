@@ -47,11 +47,15 @@ class AppTheme {
         fontWeight: FontWeight.bold,
         color: LightColors.onPrimary,
       ),
+      bodyMedium: GoogleFonts.inter(
+        fontSize: AppSizes.sp16,
+        fontWeight: FontWeight.w500,
+        color: LightColors.onPrimary,
+      ),
       bodySmall: GoogleFonts.aBeeZee(
         fontSize: AppSizes.sp14,
         color: LightColors.textDescription.withValues(alpha: 0.8),
       ),
-
       titleSmall: GoogleFonts.inter(
         fontSize: AppSizes.sp14,
         fontWeight: FontWeight.w600,
@@ -68,6 +72,23 @@ class AppTheme {
         color: LightColors.firstText,
         fontWeight: FontWeight.bold,
         fontSize: AppSizes.sp18,
+      ),
+    ),
+    splashFactory: NoSplash.splashFactory,
+    progressIndicatorTheme: ProgressIndicatorThemeData(
+      borderRadius: BorderRadius.circular(AppSizes.r500),
+    ),
+    filledButtonTheme: FilledButtonThemeData(
+      style: FilledButton.styleFrom(
+        padding: EdgeInsets.symmetric(vertical: AppSizes.h16),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadiusGeometry.circular(AppSizes.r12),
+        ),
+        textStyle: GoogleFonts.inter(
+          fontSize: AppSizes.sp14,
+          fontWeight: FontWeight.bold,
+          color: LightColors.secBackground,
+        ),
       ),
     ),
   );

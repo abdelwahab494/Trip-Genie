@@ -7,28 +7,9 @@ class TravelTipsDetailsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final S s = S.of(context);
     return Scaffold(
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
-        elevation: 0,
-        scrolledUnderElevation: 0,
-        leading: IconButton(
-          padding: EdgeInsets.zero,
-          icon: Icon(
-            Icons.arrow_back,
-            color: Theme.of(context).colorScheme.primary,
-          ),
-          onPressed: () => Navigator.pop(context),
-        ),
-        titleSpacing: 0,
-        title: Text(
-          "Travel Tips",
-          style: AppFonts.inter16Medium(
-            context,
-          ).copyWith(color: Theme.of(context).colorScheme.onSurface),
-        ),
-      ),
+      appBar: AppBar(title: Text(s.travelTips)),
       body: SingleChildScrollView(
         physics: const BouncingScrollPhysics(),
         padding: EdgeInsets.symmetric(horizontal: AppSizes.w20),
@@ -37,16 +18,16 @@ class TravelTipsDetailsScreen extends StatelessWidget {
           children: [
             Gap(AppSizes.h10),
             Text(
-              "Smart Guide",
+              s.smartGuide,
               style: AppFonts.inter24Bold(
                 context,
-              ).copyWith(color: Theme.of(context).colorScheme.onSurface),
+              ).copyWith(color: context.firstText),
             ),
             Gap(AppSizes.h8),
             Text(
-              "Essential information for your journey through Egypt.",
+              s.essentialinformationforyourjourneythroughEgypt,
               style: AppFonts.inter14SemiBold(context).copyWith(
-                color: Theme.of(context).colorScheme.onSurface,
+                color: context.thirdText,
                 fontWeight: FontWeight.w500,
                 height: 1.4,
               ),

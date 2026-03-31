@@ -1,6 +1,6 @@
 import 'package:trip_genie/core/manager/app_imports.dart';
 import 'package:trip_genie/core/shared/widgets/cached_image_widget.dart';
-import 'package:trip_genie/features/trip_info/presentation/pages/travel_info_screen.dart';
+import 'package:trip_genie/features/trip_info/presentation/screens/travel_info_screen.dart';
 
 class CityCard extends StatelessWidget {
   final CityModel city;
@@ -60,7 +60,7 @@ class CityCard extends StatelessWidget {
                 Gap(AppSizes.h4),
                 Text(
                   city.description!,
-                  style: AppFonts.aBeeZee4Bold(context),
+                  style: AppFonts.aBeeZee14Regular(context),
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -68,7 +68,11 @@ class CityCard extends StatelessWidget {
                 InkWell(
                   onTap: () => Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (c) => TravelInfoScreen(city: city),
+                      builder: (c) => BlocProvider(
+                        create: (context) =>
+                            getIt<TripInfoCubit>()..getTripCategories(city.id!),
+                        child: TravelInfoScreen(city: city),
+                      ),
                     ),
                   ),
                   child: ExploreButton(),

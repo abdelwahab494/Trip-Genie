@@ -43,11 +43,10 @@ class _HomeScreenState extends State<HomeScreen> {
               TravelTipsSection(),
 
               // Bottom Padding
-              SliverToBoxAdapter(child: Gap(AppSizes.h24)),
+              SliverGap(AppSizes.h24),
             ],
           ),
         ),
-        bottomNavigationBar: const HomeBottomNavigationBarComponent(),
       ),
     );
   }

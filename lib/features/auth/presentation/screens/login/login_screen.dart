@@ -1,4 +1,4 @@
-import 'package:trip_genie/core/extensions/colors_extension.dart';
+import 'package:trip_genie/core/extensions/snack_bar_extension.dart';
 import 'package:trip_genie/core/manager/app_imports.dart' hide AuthState;
 import 'package:trip_genie/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:trip_genie/features/auth/presentation/screens/reset%20password/forget_password_screen.dart';
@@ -105,7 +105,7 @@ class _LoginScreenState extends State<LoginScreen> with FormHelperMixin {
                                 if (state is AuthSuccess) {
                                   Navigator.of(context).pushReplacement(
                                     MaterialPageRoute(
-                                      builder: (c) => HomeScreen(),
+                                      builder: (c) => NavigationRoot(),
                                     ),
                                   );
                                 }

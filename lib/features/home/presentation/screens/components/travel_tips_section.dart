@@ -120,6 +120,10 @@ class TravelTipsSection extends StatelessWidget {
                     ],
                   )
                 : Skeletonizer(
+                    effect: ShimmerEffect(
+                      baseColor: Colors.grey.shade500,
+                      highlightColor: Colors.white,
+                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
