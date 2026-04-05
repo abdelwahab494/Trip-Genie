@@ -140,8 +140,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "thisFieldIsRequired":
             MessageLookupByLibrary.simpleMessage("This Field Is Required!"),
         "token": MessageLookupByLibrary.simpleMessage(" Token?"),
+        "totalDuration": MessageLookupByLibrary.simpleMessage("Total Duration"),
+        "totalStops": MessageLookupByLibrary.simpleMessage("Total Stops"),
         "travelTips": MessageLookupByLibrary.simpleMessage("Travel Tips"),
         "tripGenie": MessageLookupByLibrary.simpleMessage("Trip Genie"),
+        "tripPlan": MessageLookupByLibrary.simpleMessage("Trip Plan"),
+        "tryAgain": MessageLookupByLibrary.simpleMessage("Try Again"),
         "user": MessageLookupByLibrary.simpleMessage("User"),
         "welcomeBack": MessageLookupByLibrary.simpleMessage("Welcome Back"),
         "wevesentaresettokentoyouremail": MessageLookupByLibrary.simpleMessage(

@@ -831,6 +831,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Trip Plan`
+  String get tripPlan {
+    return Intl.message(
+      'Trip Plan',
+      name: 'tripPlan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Try Again`
+  String get tryAgain {
+    return Intl.message(
+      'Try Again',
+      name: 'tryAgain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total Stops`
+  String get totalStops {
+    return Intl.message(
+      'Total Stops',
+      name: 'totalStops',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total Duration`
+  String get totalDuration {
+    return Intl.message(
+      'Total Duration',
+      name: 'totalDuration',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

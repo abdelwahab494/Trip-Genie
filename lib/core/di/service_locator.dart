@@ -8,4 +8,5 @@ void setupServiceLocator() {
   profileInjection();
   travelTipsInjection();
   tripInfoInjection();
+  planInjection();
 }

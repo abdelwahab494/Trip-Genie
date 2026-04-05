@@ -34,6 +34,7 @@ class TravelInfoScreen extends StatelessWidget {
                         Navigator.of(context).pushReplacement(
                           MaterialPageRoute(
                             builder: (_) => PlanScreen(
+                              cityName: city.name,
                               tripDuration: state.tripDuration,
                               tripStyle: state.tripStyle,
                               placesList: state.placesList,

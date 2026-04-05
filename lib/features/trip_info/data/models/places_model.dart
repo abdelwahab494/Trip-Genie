@@ -1,19 +1,48 @@
+import 'package:hive_flutter/adapters.dart';
 import 'package:trip_genie/core/networking/supabase_helper.dart';
 
-class PlacesModel {
+part 'places_model.g.dart';
+
+@HiveType(typeId: 0)
+class PlacesModel extends HiveObject{
+  @HiveField(0)
   final String? id;
+
+  @HiveField(1)
   final String name;
+
+  @HiveField(2)
   final String cityId;
+
+  @HiveField(3)
   final String? regionId;
+
+  @HiveField(4)
   final String? description;
+
+  @HiveField(5)
   final String? address;
+
+  @HiveField(6)
   final double? lat;
+
+  @HiveField(7)
   final double? lng;
+
+  @HiveField(8)
   final List<String>? images;
+
+  @HiveField(9)
   final String? category;
+
+  @HiveField(10)
   final Map<String, dynamic>? openingHours;
+
+  @HiveField(11)
   final DateTime? createdAt;
-  final String? visitTime;
+
+  @HiveField(12)
+  final String visitTime;
 
   PlacesModel({
     this.id,
@@ -28,7 +57,7 @@ class PlacesModel {
     this.category,
     this.openingHours,
     this.createdAt,
-    this.visitTime,
+    this.visitTime = "afternoon",
   });
 
   // From Supabase response
@@ -93,6 +122,7 @@ class PlacesModel {
     String? category,
     Map<String, dynamic>? openingHours,
     DateTime? createdAt,
+    String? visitTime,
   }) {
     return PlacesModel(
       id: id ?? this.id,
@@ -107,6 +137,7 @@ class PlacesModel {
       category: category ?? this.category,
       openingHours: openingHours ?? this.openingHours,
       createdAt: createdAt ?? this.createdAt,
+      visitTime: visitTime ?? this.visitTime,
     );
   }
 }

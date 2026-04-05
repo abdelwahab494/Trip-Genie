@@ -1,5 +1,4 @@
 import 'package:trip_genie/core/manager/app_imports.dart';
-import 'package:trip_genie/features/navigation/data/enums/screens_enum.dart';
 
 class NavigationRoot extends StatefulWidget {
   const NavigationRoot({super.key});

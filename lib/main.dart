@@ -4,6 +4,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   setupServiceLocator();
   await PrefsHelper.init();
+  await HiveHelper.init();
 
   OneSignal.Debug.setLogLevel(OSLogLevel.none);
   OneSignal.initialize(Env.oneSignalKey);
