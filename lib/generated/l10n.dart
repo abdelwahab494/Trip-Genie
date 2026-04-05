@@ -18,10 +18,8 @@ class S {
   static S? _current;
 
   static S get current {
-    assert(
-      _current != null,
-      'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.',
-    );
+    assert(_current != null,
+        'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.');
     return _current!;
   }
 
@@ -43,10 +41,8 @@ class S {
 
   static S of(BuildContext context) {
     final instance = S.maybeOf(context);
-    assert(
-      instance != null,
-      'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?',
-    );
+    assert(instance != null,
+        'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?');
     return instance!;
   }
 
@@ -84,21 +80,47 @@ class S {
     );
   }
 
-  // skipped getter for the 'searchcities...' key
+  /// `Search cities...`
+  String get searchcities {
+    return Intl.message(
+      'Search cities...',
+      name: 'searchcities',
+      desc: '',
+      args: [],
+    );
+  }
 
   /// `Explore`
   String get explore {
-    return Intl.message('Explore', name: 'explore', desc: '', args: []);
+    return Intl.message(
+      'Explore',
+      name: 'explore',
+      desc: '',
+      args: [],
+    );
   }
 
   // skipped getter for the 'searchForcity..' key
 
   /// `Trip Genie`
   String get tripGenie {
-    return Intl.message('Trip Genie', name: 'tripGenie', desc: '', args: []);
+    return Intl.message(
+      'Trip Genie',
+      name: 'tripGenie',
+      desc: '',
+      args: [],
+    );
   }
 
-  // skipped getter for the 'searchForACity..' key
+  /// `Search for a city..`
+  String get searchForACity {
+    return Intl.message(
+      'Search for a city..',
+      name: 'searchForACity',
+      desc: '',
+      args: [],
+    );
+  }
 
   /// `Welcome Back`
   String get welcomeBack {
@@ -122,12 +144,22 @@ class S {
 
   /// `Login`
   String get login {
-    return Intl.message('Login', name: 'login', desc: '', args: []);
+    return Intl.message(
+      'Login',
+      name: 'login',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Email`
   String get email {
-    return Intl.message('Email', name: 'email', desc: '', args: []);
+    return Intl.message(
+      'Email',
+      name: 'email',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Enter your email`
@@ -142,7 +174,12 @@ class S {
 
   /// `Password`
   String get password {
-    return Intl.message('Password', name: 'password', desc: '', args: []);
+    return Intl.message(
+      'Password',
+      name: 'password',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Enter Your Password`
@@ -177,7 +214,12 @@ class S {
 
   /// `Sign Up`
   String get signUp {
-    return Intl.message('Sign Up', name: 'signUp', desc: '', args: []);
+    return Intl.message(
+      'Sign Up',
+      name: 'signUp',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Create Account`
@@ -212,7 +254,12 @@ class S {
 
   /// `Full Name`
   String get fullName {
-    return Intl.message('Full Name', name: 'fullName', desc: '', args: []);
+    return Intl.message(
+      'Full Name',
+      name: 'fullName',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Confirm Password`
@@ -387,7 +434,12 @@ class S {
 
   /// `Ok`
   String get ok {
-    return Intl.message('Ok', name: 'ok', desc: '', args: []);
+    return Intl.message(
+      'Ok',
+      name: 'ok',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Forgor your Password?`
@@ -432,7 +484,12 @@ class S {
 
   /// ` Token?`
   String get token {
-    return Intl.message(' Token?', name: 'token', desc: '', args: []);
+    return Intl.message(
+      ' Token?',
+      name: 'token',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `Reset Password`
@@ -447,7 +504,12 @@ class S {
 
   /// `Reset Token`
   String get resetToken {
-    return Intl.message('Reset Token', name: 'resetToken', desc: '', args: []);
+    return Intl.message(
+      'Reset Token',
+      name: 'resetToken',
+      desc: '',
+      args: [],
+    );
   }
 
   /// `New Password`
@@ -539,13 +601,285 @@ class S {
       args: [],
     );
   }
+
+  /// `Personalize Your Trip`
+  String get personalizeYourTrip {
+    return Intl.message(
+      'Personalize Your Trip',
+      name: 'personalizeYourTrip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Step`
+  String get step {
+    return Intl.message(
+      'Step',
+      name: 'step',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `of`
+  String get Of {
+    return Intl.message(
+      'of',
+      name: 'Of',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Complete`
+  String get complete {
+    return Intl.message(
+      'Complete',
+      name: 'complete',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue`
+  String get Continue {
+    return Intl.message(
+      'Continue',
+      name: 'Continue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Generate My Plan`
+  String get generateMyPlan {
+    return Intl.message(
+      'Generate My Plan',
+      name: 'generateMyPlan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hello, `
+  String get hello {
+    return Intl.message(
+      'Hello, ',
+      name: 'hello',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User`
+  String get user {
+    return Intl.message(
+      'User',
+      name: 'user',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search Results`
+  String get searchResults {
+    return Intl.message(
+      'Search Results',
+      name: 'searchResults',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Popular Cities`
+  String get popularCities {
+    return Intl.message(
+      'Popular Cities',
+      name: 'popularCities',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Travel Tips`
+  String get travelTips {
+    return Intl.message(
+      'Travel Tips',
+      name: 'travelTips',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Smart Guide`
+  String get smartGuide {
+    return Intl.message(
+      'Smart Guide',
+      name: 'smartGuide',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Essential information for your journey through Egypt.`
+  String get essentialinformationforyourjourneythroughEgypt {
+    return Intl.message(
+      'Essential information for your journey through Egypt.',
+      name: 'essentialinformationforyourjourneythroughEgypt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No description available`
+  String get nodescriptionavailable {
+    return Intl.message(
+      'No description available',
+      name: 'nodescriptionavailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No cities found`
+  String get nocitiesfound {
+    return Intl.message(
+      'No cities found',
+      name: 'nocitiesfound',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Login Required`
+  String get loginRequired {
+    return Intl.message(
+      'Login Required',
+      name: 'loginRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `How long is your journey?`
+  String get howlongisyourjourney {
+    return Intl.message(
+      'How long is your journey?',
+      name: 'howlongisyourjourney',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose the duration that best fits your travel style and schedule.`
+  String get chooseTheDuration {
+    return Intl.message(
+      'Choose the duration that best fits your travel style and schedule.',
+      name: 'chooseTheDuration',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Half Day`
+  String get halfDay {
+    return Intl.message(
+      'Half Day',
+      name: 'halfDay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Full Day`
+  String get fullDay {
+    return Intl.message(
+      'Full Day',
+      name: 'fullDay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Multi Day`
+  String get multiDay {
+    return Intl.message(
+      'Multi Day',
+      name: 'multiDay',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What's your travel style?`
+  String get whatsyourtravelstyle {
+    return Intl.message(
+      'What\'s your travel style?',
+      name: 'whatsyourtravelstyle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose the persona that best fits your journey in Egypt. We'll tailor your itinerary based on this choice.`
+  String get choosethepersona {
+    return Intl.message(
+      'Choose the persona that best fits your journey in Egypt. We\'ll tailor your itinerary based on this choice.',
+      name: 'choosethepersona',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Trip Plan`
+  String get tripPlan {
+    return Intl.message(
+      'Trip Plan',
+      name: 'tripPlan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Try Again`
+  String get tryAgain {
+    return Intl.message(
+      'Try Again',
+      name: 'tryAgain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total Stops`
+  String get totalStops {
+    return Intl.message(
+      'Total Stops',
+      name: 'totalStops',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total Duration`
+  String get totalDuration {
+    return Intl.message(
+      'Total Duration',
+      name: 'totalDuration',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
   const AppLocalizationDelegate();
 
   List<Locale> get supportedLocales {
-    return const <Locale>[Locale.fromSubtags(languageCode: 'en')];
+    return const <Locale>[
+      Locale.fromSubtags(languageCode: 'en'),
+    ];
   }
 
   @override

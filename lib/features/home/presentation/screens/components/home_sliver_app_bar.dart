@@ -1,3 +1,4 @@
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:trip_genie/core/manager/app_imports.dart';
 
 class HomeSliverAppBar extends StatelessWidget {
@@ -5,40 +6,62 @@ class HomeSliverAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final S s = S.of(context);
     return SliverAppBar(
       floating: true,
-      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       title: Row(
         children: [
           Padding(
             padding: EdgeInsets.only(right: AppSizes.w16),
             child: CircleAvatar(
               radius: AppSizes.r16,
-              backgroundColor: Theme.of(context).colorScheme.surface,
+              backgroundColor: context.secBackground,
               child: Icon(
                 Icons.person,
                 size: AppSizes.w16,
-                color: Theme.of(context).colorScheme.primary,
+                color: context.primary,
               ),
             ),
           ),
           BlocBuilder<UserCubit, UserState>(
             builder: (context, state) {
               if (state is UserLoading) {
-                return const Text('Loading...');
+                return Skeletonizer(
+                  effect: ShimmerEffect(
+              baseColor: Colors.grey.shade500,
+              highlightColor: Colors.white,
+            ),
+                  child: RichText(
+                    text: TextSpan(
+                      text: s.hello,
+                      style: AppFonts.inter16Medium(
+                        context,
+                      ).copyWith(color: context.firstText),
+                      children: [
+                        TextSpan(
+                          text: s.user,
+                          style: AppFonts.inter16Medium(context).copyWith(
+                            color: context.primary,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
               }
               if (state is UserLoaded) {
                 return RichText(
                   text: TextSpan(
-                    text: "Hello, ",
+                    text: s.hello,
                     style: AppFonts.inter16Medium(
                       context,
-                    ).copyWith(color: Theme.of(context).colorScheme.onSurface),
+                    ).copyWith(color: context.firstText),
                     children: [
                       TextSpan(
-                        text: state.user.name ?? "User",
+                        text: state.user.name ?? s.user,
                         style: AppFonts.inter16Medium(context).copyWith(
-                          color: Theme.of(context).colorScheme.primary,
+                          color: context.primary,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -48,15 +71,15 @@ class HomeSliverAppBar extends StatelessWidget {
               }
               return RichText(
                 text: TextSpan(
-                  text: "Trip",
+                  text: s.hello,
                   style: AppFonts.inter16Medium(
                     context,
-                  ).copyWith(color: Theme.of(context).colorScheme.onSurface),
+                  ).copyWith(color: context.firstText),
                   children: [
                     TextSpan(
-                      text: "Genie",
+                      text: "...",
                       style: AppFonts.inter16Medium(context).copyWith(
-                        color: Theme.of(context).colorScheme.primary,
+                        color: context.primary,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -72,12 +95,18 @@ class HomeSliverAppBar extends StatelessWidget {
           padding: EdgeInsets.only(right: AppSizes.w16),
           child: CircleAvatar(
             radius: AppSizes.r16,
-            backgroundColor: Theme.of(context).colorScheme.surface,
+            backgroundColor: context.secBackground,
             child: IconButton(
               icon: Icon(Icons.notifications, size: AppSizes.w16),
-              color: Theme.of(context).colorScheme.primary,
+              color: context.primary,
               onPressed: () async {
                 await AuthRepoImpl(AuthService()).signOut();
+                if (context.mounted) {
+                  Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (c) => LoginScreen()),
+                    (route) => false,
+                  );
+                }
               },
             ),
           ),

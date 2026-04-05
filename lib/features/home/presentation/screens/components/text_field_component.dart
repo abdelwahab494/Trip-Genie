@@ -15,11 +15,7 @@ class CustomTextFieldHome extends StatelessWidget {
           color: Theme.of(context).colorScheme.secondary.withValues(alpha: 0.5),
           fontWeight: FontWeight.w300,
         ),
-        prefixIcon: Icon(
-          Icons.search,
-          size: 18,
-          color: Theme.of(context).colorScheme.primary,
-        ),
+        prefixIcon: Icon(Icons.search, size: 18, color: context.primary),
         border: InputBorder.none,
         contentPadding: EdgeInsets.symmetric(vertical: AppSizes.h14),
       ),

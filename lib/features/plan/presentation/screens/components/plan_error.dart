@@ -1,0 +1,47 @@
+import 'package:trip_genie/core/manager/app_imports.dart';
+
+class PlanError extends StatelessWidget {
+  const PlanError({super.key, required this.message, required this.onRetry});
+  final String message;
+  final VoidCallback onRetry;
+
+  @override
+  Widget build(BuildContext context) {
+    final S s = S.of(context);
+    return SliverFillRemaining(
+      hasScrollBody: false,
+      child: Column(
+        spacing: AppSizes.h20,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            message,
+            style: AppFonts.inter16Medium(context).copyWith(
+              color: context.firstText,
+              fontWeight: FontWeight.bold,
+              fontSize: AppSizes.sp20,
+            ),
+          ),
+          FilledButton.tonalIcon(
+            onPressed: onRetry,
+            style: FilledButton.styleFrom(
+              backgroundColor: context.primary,
+              foregroundColor: context.secBackground,
+              padding: EdgeInsets.symmetric(
+                vertical: AppSizes.h10,
+                horizontal: AppSizes.w25,
+              ),
+              shape: RoundedSuperellipseBorder(
+                borderRadius: BorderRadiusGeometry.circular(AppSizes.r12),
+                side: BorderSide(width: 3, color: context.primary),
+              ),
+              iconSize: AppSizes.r25,
+            ),
+            label: Text(s.tryAgain),
+            icon: Icon(Icons.refresh),
+          ),
+        ],
+      ),
+    );
+  }
+}

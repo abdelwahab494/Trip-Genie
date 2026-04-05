@@ -1,3 +1,4 @@
+import 'package:trip_genie/core/extensions/snack_bar_extension.dart';
 import 'package:trip_genie/core/manager/app_imports.dart' hide AuthState;
 import 'package:trip_genie/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:trip_genie/features/auth/presentation/screens/reset%20password/forget_password_screen.dart';
@@ -13,13 +14,11 @@ class _LoginScreenState extends State<LoginScreen> with FormHelperMixin {
   @override
   Widget build(BuildContext context) {
     final S s = S.of(context);
-    final ThemeData theme = Theme.of(context);
     return BlocProvider(
-      create: (context) => AuthCubit(AuthRepoImpl(AuthService())),
+      create: (context) => getIt<AuthCubit>(),
       child: GestureDetector(
         onTap: () => FocusScope.of(context).unfocus(),
         child: Scaffold(
-          backgroundColor: LightColors.secBackground,
           body: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -34,20 +33,21 @@ class _LoginScreenState extends State<LoginScreen> with FormHelperMixin {
                         s.smartEgyptDay.toUpperCase(),
                         style: AppFonts.inter14SemiBold(
                           context,
-                        ).copyWith(color: theme.colorScheme.primary),
+                        ).copyWith(color: context.primary),
                       ),
                       Gap(AppSizes.h12),
                       Text(
                         s.welcomeBack,
-                        style: AppFonts.inter30Bold(
-                          context,
-                        ).copyWith(fontSize: AppSizes.sp36),
+                        style: AppFonts.inter30Bold(context).copyWith(
+                          fontSize: AppSizes.sp36,
+                          color: context.firstText,
+                        ),
                       ),
                       Gap(AppSizes.h10),
                       Text(
                         s.loginToContinueYourJourney,
                         style: AppFonts.inter16Medium(context).copyWith(
-                          color: theme.colorScheme.tertiary,
+                          color: context.thirdText,
                           fontWeight: FontWeight.normal,
                           fontSize: AppSizes.sp14,
                         ),
@@ -90,7 +90,7 @@ class _LoginScreenState extends State<LoginScreen> with FormHelperMixin {
                                   s.forgotPassword,
                                   style: AppFonts.inter14SemiBold(context)
                                       .copyWith(
-                                        color: theme.colorScheme.primary,
+                                        color: context.primary,
                                         fontSize: AppSizes.sp12,
                                       ),
                                 ),
@@ -105,7 +105,7 @@ class _LoginScreenState extends State<LoginScreen> with FormHelperMixin {
                                 if (state is AuthSuccess) {
                                   Navigator.of(context).pushReplacement(
                                     MaterialPageRoute(
-                                      builder: (c) => HomeScreen(),
+                                      builder: (c) => NavigationRoot(),
                                     ),
                                   );
                                 }
@@ -136,18 +136,16 @@ class _LoginScreenState extends State<LoginScreen> with FormHelperMixin {
                                 children: [
                                   TextSpan(
                                     text: s.dontHaveAnAccount,
-                                    style: AppFonts.inter14SemiBold(context)
-                                        .copyWith(
-                                          color: theme.colorScheme.tertiary,
-                                        ),
+                                    style: AppFonts.inter14SemiBold(
+                                      context,
+                                    ).copyWith(color: context.thirdText),
                                   ),
                                   TextSpan(text: "   "),
                                   TextSpan(
                                     text: s.signUp,
-                                    style: AppFonts.inter14SemiBold(context)
-                                        .copyWith(
-                                          color: theme.colorScheme.primary,
-                                        ),
+                                    style: AppFonts.inter14SemiBold(
+                                      context,
+                                    ).copyWith(color: context.primary),
                                     recognizer: TapGestureRecognizer()
                                       ..onTap = () {
                                         Navigator.of(context).push(

@@ -14,17 +14,16 @@ class TitleSection extends StatelessWidget {
             width: AppSizes.w4,
             height: AppSizes.h18,
             decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.primary,
+              color: context.primary,
               borderRadius: BorderRadius.circular(AppSizes.r2),
             ),
           ),
           Gap(AppSizes.w8),
           Text(
             title,
-            style: AppFonts.inter16Medium(context).copyWith(
-              color: Theme.of(context).colorScheme.secondary,
-              fontWeight: FontWeight.bold,
-            ),
+            style: AppFonts.inter16Medium(
+              context,
+            ).copyWith(color: context.sectText, fontWeight: FontWeight.bold),
           ),
         ],
       ),

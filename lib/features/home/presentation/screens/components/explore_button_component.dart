@@ -12,11 +12,11 @@ class ExploreButton extends StatelessWidget {
         vertical: AppSizes.h10,
       ),
       decoration: BoxDecoration(
-        color: Theme.of(context).colorScheme.primary,
+        color: context.primary,
         borderRadius: BorderRadius.circular(AppSizes.r8),
         boxShadow: [
           BoxShadow(
-            color: Theme.of(context).colorScheme.shadow,
+            color: context.primary.withValues(alpha: 0.5),
             blurRadius: 3,
             offset: const Offset(1, 1),
           ),

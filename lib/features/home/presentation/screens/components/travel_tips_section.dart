@@ -120,6 +120,10 @@ class TravelTipsSection extends StatelessWidget {
                     ],
                   )
                 : Skeletonizer(
+                    effect: ShimmerEffect(
+                      baseColor: Colors.grey.shade500,
+                      highlightColor: Colors.white,
+                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -136,7 +140,8 @@ class TravelTipsSection extends StatelessWidget {
                             itemBuilder: (context, index) {
                               return SmartGuideCard(
                                 tip: TravelTipModel(
-                                  category: "Loading...",
+                                  icon: "abc",
+                                  title: "Loading...",
                                   description:
                                       "asdfsdafsadfnbsadklnfbksdamfncsdakl.nfaslkdmnfladk.sfn;lkdsfn",
                                 ),

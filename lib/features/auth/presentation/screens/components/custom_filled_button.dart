@@ -18,13 +18,11 @@ class CustomFilledButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadiusGeometry.circular(AppSizes.r12),
         ),
-      ),
-      child: Text(
-        title,
-        style: AppFonts.inter24Bold(
+        textStyle: AppFonts.inter24Bold(
           context,
-        ).copyWith(color: Colors.white, fontSize: AppSizes.sp14),
+        ).copyWith(color: context.secBackground, fontSize: AppSizes.sp14),
       ),
+      child: Text(title),
     );
   }
 }

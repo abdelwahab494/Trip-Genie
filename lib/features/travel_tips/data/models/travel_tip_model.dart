@@ -1,30 +1,27 @@
 class TravelTipModel {
-  final String category;
+  final String icon;
+  final String title;
   final String description;
 
   TravelTipModel({
-    required this.category,
+    required this.icon,
+    required this.title,
     required this.description,
   });
 
   Map<String, dynamic> toJson() {
     return <String, dynamic>{
-      'category': category,
+      'icon': icon,
+      'title': title,
       'description': description,
     };
   }
 
-  factory TravelTipModel.fromJson(Map<String, dynamic> map) {
+  factory TravelTipModel.fromJson(Map<String, dynamic> json) {
     return TravelTipModel(
-      category: map['category'] as String,
-      description: map['description'] as String,
+      icon: json['icon'] ?? "",
+      title: json['title'] ?? "",
+      description: json['description'] ?? "",
     );
-  }
-
-  Map<String, dynamic> toMap() {
-    return <String, dynamic>{
-      'category': category,
-      'description': description,
-    };
   }
 }

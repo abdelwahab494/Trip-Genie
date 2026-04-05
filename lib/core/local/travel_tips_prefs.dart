@@ -14,11 +14,16 @@ class TravelTipsPrefs {
 
   static List<TravelTipModel> getTipsList() {
     final String? tipsListEncode = _prefs.getString(travilTipsKey);
+
     if (tipsListEncode == null) {
       return [];
     }
-    final List tipsList = jsonDecode(tipsListEncode);
-    return tipsList.map((e) => TravelTipModel.fromJson(e)).toList();
+
+    final List decoded = jsonDecode(tipsListEncode);
+
+    return decoded
+        .map((e) => TravelTipModel.fromJson(e as Map<String, dynamic>))
+        .toList();
   }
 
   static Future<void> removeTipsList() async {
