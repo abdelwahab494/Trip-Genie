@@ -1,4 +1,4 @@
-import 'package:trip_genie/core/errors/faluire.dart';
+import 'package:trip_genie/core/errors/failure.dart';
 
 class GeminiFailure extends Failure {
   const GeminiFailure(super.message);

@@ -1,3 +1,4 @@
+import 'package:skeletonizer/skeletonizer.dart';
 import 'package:trip_genie/core/manager/app_imports.dart';
 
 class AppTheme {
@@ -91,6 +92,14 @@ class AppTheme {
         ),
       ),
     ),
+    extensions: [
+      SkeletonizerConfigData(
+        effect: ShimmerEffect(
+          baseColor: Colors.grey.shade400,
+          highlightColor: Colors.white,
+        ),
+      ),
+    ],
   );
 
   static final ThemeData darkTheme = ThemeData();

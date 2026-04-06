@@ -26,4 +26,31 @@ class PlansCubit extends Cubit<PlansState> {
       (planPlacesList) => emit(PlansLoaded(planPlacesList: planPlacesList)),
     );
   }
+
+  Future<void> savePlan(TripModel trip) async {
+    final result = await repo.addTripPlan(trip);
+
+    result.fold(
+      (failure) => emit(PlansLocalError(failure.message)),
+      (_) => emit(PlansLocalSuccess("Plan Saved Successfully")),
+    );
+  }
+
+  Future<void> loadPlan() async {
+    final result = await repo.getTripPlans();
+
+    result.fold(
+      (failure) => emit(PlansLocalError(failure.message)),
+      (tripsList) => emit(PlansLocalLoaded(tripsList)),
+    );
+  }
+
+  Future<void> deletePlan(int index) async {
+    final result = await repo.deleteTripPlan(index);
+
+    result.fold(
+      (failure) => emit(PlansLocalError(failure.message)),
+      (_) => emit(PlansLocalSuccess("Plan Deleted Successfully")),
+    );
+  }
 }

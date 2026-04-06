@@ -81,5 +81,7 @@
   "tripPlan": "Trip Plan",
   "tryAgain": "Try Again",
   "totalStops": "Total Stops",
-  "totalDuration": "Total Duration"
+  "totalDuration": "Total Duration",
+  "regenerate" : "Regenerate",
+  "savePlan" : "Save Plan"
 }

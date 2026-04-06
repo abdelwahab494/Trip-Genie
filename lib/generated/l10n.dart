@@ -871,6 +871,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Regenerate`
+  String get regenerate {
+    return Intl.message(
+      'Regenerate',
+      name: 'regenerate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save Plan`
+  String get savePlan {
+    return Intl.message(
+      'Save Plan',
+      name: 'savePlan',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

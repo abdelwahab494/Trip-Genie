@@ -117,8 +117,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage(
                 "Please check your inbox and use the token to reset your password."),
         "popularCities": MessageLookupByLibrary.simpleMessage("Popular Cities"),
+        "regenerate": MessageLookupByLibrary.simpleMessage("Regenerate"),
         "resetPassword": MessageLookupByLibrary.simpleMessage("Reset Password"),
         "resetToken": MessageLookupByLibrary.simpleMessage("Reset Token"),
+        "savePlan": MessageLookupByLibrary.simpleMessage("Save Plan"),
         "searchForACity":
             MessageLookupByLibrary.simpleMessage("Search for a city.."),
         "searchResults": MessageLookupByLibrary.simpleMessage("Search Results"),

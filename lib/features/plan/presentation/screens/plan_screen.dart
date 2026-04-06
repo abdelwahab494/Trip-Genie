@@ -1,7 +1,5 @@
 import 'package:skeletonizer/skeletonizer.dart';
 import 'package:trip_genie/core/manager/app_imports.dart';
-import 'package:trip_genie/features/plan/presentation/screens/components/plan_content.dart';
-import 'package:trip_genie/features/plan/presentation/screens/components/plan_error.dart';
 
 class PlanScreen extends StatefulWidget {
   const PlanScreen({
@@ -44,6 +42,15 @@ class _PlanScreenState extends State<PlanScreen> {
           child: CustomScrollView(
             slivers: [
               BlocBuilder<PlansCubit, PlansState>(
+                buildWhen: (previous, current) {
+                  final List statesList = [
+                    PlansLoaded,
+                    PlansError,
+                    PlansLoading,
+                    PlansInitial,
+                  ];
+                  return statesList.contains(current);
+                },
                 builder: (context, state) {
                   if (state is PlansLoading) {
                     return SliverSkeletonizer(child: PlanContent.skeleton());
@@ -70,6 +77,15 @@ class _PlanScreenState extends State<PlanScreen> {
                 },
               ),
             ],
+          ),
+        ),
+        resizeToAvoidBottomInset: true,
+        bottomNavigationBar: BottomActionsButtons(
+          onRegenerate: () => context.read<PlansCubit>().generatePlan(
+            cityName: widget.cityName,
+            category: widget.tripStyle,
+            tripDuration: widget.tripDuration,
+            placesList: widget.placesList,
           ),
         ),
       ),

@@ -8,4 +8,10 @@ abstract class PlansRepo {
     required String tripDuration,
     required List<PlacesModel> placesList,
   });
+
+  Future<Either<Failure, void>> addTripPlan(TripModel trip);
+
+  Future<Either<Failure, List<TripModel>>> getTripPlans();
+
+  Future<Either<Failure, void>> deleteTripPlan(int index);
 }
