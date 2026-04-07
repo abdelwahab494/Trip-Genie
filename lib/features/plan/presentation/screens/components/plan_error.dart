@@ -1,13 +1,13 @@
 import 'package:trip_genie/core/manager/app_imports.dart';
 
 class PlanError extends StatelessWidget {
-  const PlanError({super.key, required this.message, required this.onRetry});
+  const PlanError({super.key, required this.message, required this.onRetry, required this.buttonLabel});
   final String message;
+  final String buttonLabel;
   final VoidCallback onRetry;
 
   @override
   Widget build(BuildContext context) {
-    final S s = S.of(context);
     return SliverFillRemaining(
       hasScrollBody: false,
       child: Column(
@@ -19,7 +19,7 @@ class PlanError extends StatelessWidget {
             style: AppFonts.inter16Medium(context).copyWith(
               color: context.firstText,
               fontWeight: FontWeight.bold,
-              fontSize: AppSizes.sp20,
+              fontSize: AppSizes.sp16,
             ),
           ),
           FilledButton.tonalIcon(
@@ -32,12 +32,12 @@ class PlanError extends StatelessWidget {
                 horizontal: AppSizes.w25,
               ),
               shape: RoundedSuperellipseBorder(
-                borderRadius: BorderRadiusGeometry.circular(AppSizes.r12),
+                borderRadius: BorderRadiusGeometry.circular(AppSizes.r500),
                 side: BorderSide(width: 3, color: context.primary),
               ),
               iconSize: AppSizes.r25,
             ),
-            label: Text(s.tryAgain),
+            label: Text(buttonLabel),
             icon: Icon(Icons.refresh),
           ),
         ],

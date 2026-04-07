@@ -891,6 +891,146 @@ class S {
       args: [],
     );
   }
+
+  /// `Save Your Trip`
+  String get saveYourTrip {
+    return Intl.message(
+      'Save Your Trip',
+      name: 'saveYourTrip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Give your trip a name to save it for later.`
+  String get giveyourtripanametosaveitforlater {
+    return Intl.message(
+      'Give your trip a name to save it for later.',
+      name: 'giveyourtripanametosaveitforlater',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `e.g. Summer in Cairo`
+  String get egSummerinCairo {
+    return Intl.message(
+      'e.g. Summer in Cairo',
+      name: 'egSummerinCairo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `save`
+  String get save {
+    return Intl.message(
+      'save',
+      name: 'save',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `cancle`
+  String get cancle {
+    return Intl.message(
+      'cancle',
+      name: 'cancle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Remove`
+  String get remove {
+    return Intl.message(
+      'Remove',
+      name: 'remove',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Replace`
+  String get replace {
+    return Intl.message(
+      'Replace',
+      name: 'replace',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Place Removed successfully`
+  String get placeRemovedSuccessfully {
+    return Intl.message(
+      'Place Removed successfully',
+      name: 'placeRemovedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No places available for this plan`
+  String get noplacesavailableforthisplan {
+    return Intl.message(
+      'No places available for this plan',
+      name: 'noplacesavailableforthisplan',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Alternative Places`
+  String get alternativePlaces {
+    return Intl.message(
+      'Alternative Places',
+      name: 'alternativePlaces',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Suggestions for your`
+  String get suggestionsforyour {
+    return Intl.message(
+      'Suggestions for your',
+      name: 'suggestionsforyour',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `trip in`
+  String get tripin {
+    return Intl.message(
+      'trip in',
+      name: 'tripin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Replacing your missed slot at `
+  String get replacingyourmissedslotat {
+    return Intl.message(
+      'Replacing your missed slot at ',
+      name: 'replacingyourmissedslotat',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ADD`
+  String get add {
+    return Intl.message(
+      'ADD',
+      name: 'add',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

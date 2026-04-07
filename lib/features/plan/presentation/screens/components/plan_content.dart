@@ -11,6 +11,7 @@ class PlanContent extends StatefulWidget {
 
   PlanContent.skeleton({super.key})
     : state = PlansLoaded(
+        cityName: "Cairo",
         planPlacesList: List.generate(
           5,
           (index) => PlacesModel(
@@ -33,6 +34,9 @@ class PlanContent extends StatefulWidget {
             visitTime: "90",
           ),
         ),
+        category: '',
+        tripDuration: '',
+        placesList: [],
       ),
       tripDuration = "Full Day";
 
@@ -45,6 +49,7 @@ class _PlanContentState extends State<PlanContent> {
 
   @override
   Widget build(BuildContext context) {
+    final S s = S.of(context);
     return SliverMainAxisGroup(
       slivers: [
         SliverToBoxAdapter(
@@ -54,95 +59,196 @@ class _PlanContentState extends State<PlanContent> {
           ),
         ),
         SliverGap(AppSizes.h20),
-        SliverToBoxAdapter(
-          child: Stepper(
-            physics: BouncingScrollPhysics(),
-            type: StepperType.vertical,
-            elevation: 0,
-            stepIconHeight: 40,
-            stepIconWidth: 40,
-            connectorColor: WidgetStateColor.resolveWith(
-              (states) => context.primary,
-            ),
-            stepIconBuilder: (stepIndex, stepState) {
-              if (stepState == StepState.complete) {
-                return Icon(Icons.check, color: context.secBackground);
-              }
-              return Icon(Icons.location_on, color: context.secBackground);
-            },
-            controlsBuilder: (context, details) {
-              return const SizedBox();
-            },
-            steps: List.generate(widget.state.planPlacesList.length, (index) {
-              final PlacesModel place = widget.state.planPlacesList[index];
-              return Step(
-                isActive: _currentStep >= index,
-                state: _currentStep > index
-                    ? StepState.complete
-                    : StepState.indexed,
-                title: Text(
-                  place.name,
-                  style: GoogleFonts.inter(
-                    color: context.firstText,
-                    fontWeight: FontWeight.w600,
-                    fontSize: AppSizes.sp16,
+        widget.state.planPlacesList.isNotEmpty
+            ? SliverToBoxAdapter(
+                child: Stepper(
+                  key: ValueKey(widget.state.planPlacesList.length),
+                  physics: BouncingScrollPhysics(),
+                  type: StepperType.vertical,
+                  elevation: 0,
+                  stepIconHeight: 40,
+                  stepIconWidth: 40,
+                  connectorColor: WidgetStateColor.resolveWith(
+                    (states) => context.primary,
                   ),
-                ),
-                subtitle: Text(
-                  place.visitTime,
-                  style: GoogleFonts.inter(
-                    color: context.primary,
-                    fontWeight: FontWeight.bold,
-                    fontSize: AppSizes.sp14,
-                  ),
-                ),
-                content: Container(
-                  margin: EdgeInsets.only(top: AppSizes.h8),
-                  padding: EdgeInsets.all(AppSizes.w12),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(16),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.15),
-                        blurRadius: 10,
-                        offset: const Offset(0, 4),
-                      ),
-                    ],
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(12),
-                        child: Image.network(
-                          place.images![0],
-                          width: double.infinity,
-                          height: 160,
-                          fit: BoxFit.cover,
+                  stepIconBuilder: (stepIndex, stepState) {
+                    if (stepState == StepState.complete) {
+                      return Icon(Icons.check, color: context.secBackground);
+                    }
+                    return Icon(
+                      Icons.location_on,
+                      color: context.secBackground,
+                    );
+                  },
+                  controlsBuilder: (context, details) {
+                    return Row(
+                      spacing: AppSizes.w14,
+                      children: [
+                        TextButton.icon(
+                          onPressed: () async {
+                            final PlansCubit cubit = context.read<PlansCubit>();
+                            final PlacesModel? place =
+                                await showModalBottomSheet(
+                                  context: context,
+                                  isScrollControlled: true,
+                                  isDismissible: true,
+                                  builder: (context) {
+                                    return TripReplaceSheet(
+                                      visitTime: widget
+                                          .state
+                                          .planPlacesList[details.currentStep]
+                                          .visitTime,
+                                      cityName: widget.state.cityName,
+                                      replacedPlace: widget
+                                          .state
+                                          .planPlacesList[details.currentStep]
+                                          .name,
+                                      places:
+                                          List<PlacesModel>.from(
+                                                widget.state.placesList,
+                                              )
+                                              .where(
+                                                (place) => !widget
+                                                    .state
+                                                    .planPlacesList
+                                                    .contains(place),
+                                              )
+                                              .toList(),
+                                    );
+                                  },
+                                );
+                            if (place != null) {
+                              cubit.replaceInPlan(
+                                widget.state.planPlacesList[details
+                                    .currentStep],
+                                place,
+                              );
+                            }
+                          },
+                          style: TextButton.styleFrom(
+                            foregroundColor: Colors.grey[600],
+                            textStyle: TextStyle(
+                              fontSize: AppSizes.sp13,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            padding: EdgeInsets.zero,
+                          ),
+                          icon: Icon(Icons.swap_horiz, size: AppSizes.r16),
+                          label: Text(s.replace),
                         ),
-                      ),
-                      SizedBox(height: AppSizes.h12),
-                      Text(
-                        place.description ?? "",
+                        TextButton.icon(
+                          onPressed: () {
+                            final cubit = context.read<PlansCubit>();
+                            cubit.removeFromPlan(details.stepIndex);
+
+                            setState(() {
+                              if (_currentStep >=
+                                  widget.state.planPlacesList.length - 1) {
+                                _currentStep =
+                                    widget.state.planPlacesList.length - 2;
+                              }
+                              if (_currentStep < 0) _currentStep = 0;
+                            });
+
+                            context.showSuccess(s.placeRemovedSuccessfully);
+                          },
+                          style: TextButton.styleFrom(
+                            foregroundColor: context.error,
+                            textStyle: TextStyle(
+                              fontSize: AppSizes.sp13,
+                              fontWeight: FontWeight.w500,
+                            ),
+                            padding: EdgeInsets.zero,
+                          ),
+                          icon: Icon(Icons.clear_rounded, size: AppSizes.r16),
+                          label: Text(s.remove),
+                        ),
+                      ],
+                    );
+                  },
+                  steps: List.generate(widget.state.planPlacesList.length, (
+                    index,
+                  ) {
+                    final PlacesModel place =
+                        widget.state.planPlacesList[index];
+                    return Step(
+                      isActive: _currentStep >= index,
+                      state: _currentStep > index
+                          ? StepState.complete
+                          : StepState.indexed,
+                      title: Text(
+                        place.name,
                         style: GoogleFonts.inter(
-                          fontSize: AppSizes.sp14,
-                          color: context.thirdText,
+                          color: context.firstText,
+                          fontWeight: FontWeight.w600,
+                          fontSize: AppSizes.sp16,
                         ),
                       ),
-                    ],
-                  ),
+                      subtitle: Text(
+                        place.visitTime,
+                        style: GoogleFonts.inter(
+                          color: context.primary,
+                          fontWeight: FontWeight.bold,
+                          fontSize: AppSizes.sp14,
+                        ),
+                      ),
+                      content: Container(
+                        margin: EdgeInsets.only(top: AppSizes.h8),
+                        padding: EdgeInsets.all(AppSizes.w12),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(16),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withValues(alpha: 0.15),
+                              blurRadius: 10,
+                              offset: const Offset(0, 4),
+                            ),
+                          ],
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            ClipRRect(
+                              borderRadius: BorderRadius.circular(12),
+                              child: Image.network(
+                                place.images![0],
+                                width: double.infinity,
+                                height: 160,
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            SizedBox(height: AppSizes.h12),
+                            Text(
+                              place.description ?? "",
+                              style: GoogleFonts.inter(
+                                fontSize: AppSizes.sp14,
+                                color: context.thirdText,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  }),
+                  onStepTapped: (value) {
+                    setState(() {
+                      _currentStep = value;
+                    });
+                  },
+                  currentStep: _currentStep,
                 ),
-              );
-            }),
-            onStepTapped: (value) {
-              setState(() {
-                _currentStep = value;
-              });
-            },
-            currentStep: _currentStep,
-          ),
-        ),
+              )
+            : PlanError(
+                message: s.noplacesavailableforthisplan,
+                onRetry: () => context.read<PlansCubit>().generatePlan(
+                  cityName: widget.state.cityName,
+                  category: widget.state.category,
+                  tripDuration: widget.state.tripDuration,
+                  placesList: widget.state.placesList,
+                ),
+                buttonLabel: s.tryAgain,
+              ),
       ],
     );
   }

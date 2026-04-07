@@ -14,8 +14,34 @@ final class PlansError extends PlansState {
 
 final class PlansLoaded extends PlansState {
   final List<PlacesModel> planPlacesList;
+  final String cityName;
+  final String category;
+  final String tripDuration;
+  final List<PlacesModel> placesList;
 
-  PlansLoaded({required this.planPlacesList});
+  PlansLoaded({
+    required this.planPlacesList,
+    required this.cityName,
+    required this.category,
+    required this.tripDuration,
+    required this.placesList,
+  });
+
+  PlansLoaded copyWith({
+    List<PlacesModel>? planPlacesList,
+    String? cityName,
+    String? category,
+    String? tripDuration,
+    List<PlacesModel>? placesList,
+  }) {
+    return PlansLoaded(
+      planPlacesList: planPlacesList ?? this.planPlacesList,
+      cityName: cityName ?? this.cityName,
+      category: category ?? this.category,
+      tripDuration: tripDuration ?? this.tripDuration,
+      placesList: placesList ?? this.placesList,
+    );
+  }
 }
 
 final class PlansLocalSuccess extends PlansState {

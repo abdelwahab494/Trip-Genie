@@ -1,4 +1,3 @@
-import 'package:trip_genie/core/extensions/snack_bar_extension.dart';
 import 'package:trip_genie/core/manager/app_imports.dart' hide AuthState;
 import 'package:trip_genie/features/auth/presentation/cubit/auth_cubit.dart';
 import 'package:trip_genie/features/auth/presentation/screens/reset%20password/forget_password_screen.dart';

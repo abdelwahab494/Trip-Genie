@@ -30,64 +30,74 @@ class _PlanScreenState extends State<PlanScreen> {
           tripDuration: widget.tripDuration,
           placesList: widget.placesList,
         ),
-      child: Scaffold(
-        appBar: AppBar(title: Text(s.tripPlan)),
-        body: Padding(
-          padding: EdgeInsets.fromLTRB(
-            AppSizes.w16,
-            AppSizes.h20,
-            AppSizes.w16,
-            AppSizes.h0,
-          ),
-          child: CustomScrollView(
-            slivers: [
-              BlocBuilder<PlansCubit, PlansState>(
-                buildWhen: (previous, current) {
-                  final List statesList = [
-                    PlansLoaded,
-                    PlansError,
-                    PlansLoading,
-                    PlansInitial,
-                  ];
-                  return statesList.contains(current);
-                },
-                builder: (context, state) {
-                  if (state is PlansLoading) {
-                    return SliverSkeletonizer(child: PlanContent.skeleton());
-                  }
-                  if (state is PlansError) {
-                    return PlanError(
-                      message: state.message,
-                      onRetry: () async =>
-                          await context.read<PlansCubit>().generatePlan(
-                            cityName: widget.cityName,
-                            category: widget.tripStyle,
-                            tripDuration: widget.tripDuration,
-                            placesList: widget.placesList,
-                          ),
-                    );
-                  }
-                  if (state is PlansLoaded) {
-                    return PlanContent(
-                      state: state,
-                      tripDuration: widget.tripDuration,
-                    );
-                  }
-                  return SliverToBoxAdapter(child: const SizedBox());
-                },
+      child: Builder(
+        builder: (context) {
+          return Scaffold(
+            appBar: AppBar(title: Text(s.tripPlan)),
+            body: Padding(
+              padding: EdgeInsets.fromLTRB(
+                AppSizes.w16,
+                AppSizes.h20,
+                AppSizes.w16,
+                AppSizes.h0,
               ),
-            ],
-          ),
-        ),
-        resizeToAvoidBottomInset: true,
-        bottomNavigationBar: BottomActionsButtons(
-          onRegenerate: () => context.read<PlansCubit>().generatePlan(
-            cityName: widget.cityName,
-            category: widget.tripStyle,
-            tripDuration: widget.tripDuration,
-            placesList: widget.placesList,
-          ),
-        ),
+              child: CustomScrollView(
+                slivers: [
+                  BlocConsumer<PlansCubit, PlansState>(
+                    listener: (context, state) {
+                      if (state is PlansLocalSuccess) {
+                        context.showSuccess(state.message);
+                      }
+                      if (state is PlansLocalError) {
+                        context.showError(state.message);
+                      }
+                    },
+                    buildWhen: (previous, current) =>
+                        current is PlansLoaded ||
+                        current is PlansLoading ||
+                        current is PlansError,
+                    builder: (context, state) {
+                      if (state is PlansLoading) {
+                        return SliverSkeletonizer(
+                          child: PlanContent.skeleton(),
+                        );
+                      }
+                      if (state is PlansError) {
+                        return PlanError(
+                          message: state.message,
+                          onRetry: () async =>
+                              await context.read<PlansCubit>().generatePlan(
+                                cityName: widget.cityName,
+                                category: widget.tripStyle,
+                                tripDuration: widget.tripDuration,
+                                placesList: widget.placesList,
+                              ),
+                          buttonLabel: s.regenerate,
+                        );
+                      }
+                      if (state is PlansLoaded) {
+                        return PlanContent(
+                          state: state,
+                          tripDuration: widget.tripDuration,
+                        );
+                      }
+                      return SliverToBoxAdapter(child: const SizedBox());
+                    },
+                  ),
+                ],
+              ),
+            ),
+            resizeToAvoidBottomInset: true,
+            bottomNavigationBar: BottomActionsButtons(
+              onRegenerate: () => context.read<PlansCubit>().generatePlan(
+                cityName: widget.cityName,
+                category: widget.tripStyle,
+                tripDuration: widget.tripDuration,
+                placesList: widget.placesList,
+              ),
+            ),
+          );
+        },
       ),
     );
   }

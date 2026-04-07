@@ -31,7 +31,7 @@ class PlansRepoImpl implements PlansRepo {
           .toList();
       return Right(planPlaces);
     } catch (e) {
-      return Left(GeminiFailure("Failed to generate plan"));
+      return Left(GeminiFailure("Failed to generate plan, $e"));
     }
   }
 

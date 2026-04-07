@@ -1,5 +1,4 @@
 import 'package:skeletonizer/skeletonizer.dart';
-import 'package:trip_genie/core/extensions/snack_bar_extension.dart';
 import 'package:trip_genie/core/manager/app_imports.dart';
 
 class BottomActionsButtons extends StatelessWidget {
@@ -9,15 +8,7 @@ class BottomActionsButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final S s = S.of(context);
-    return BlocConsumer<PlansCubit, PlansState>(
-      listener: (context, state) {
-        if (state is PlansLocalSuccess) {
-          context.showSuccess(state.message);
-        }
-        if (state is PlansLocalError) {
-          context.showError(state.message);
-        }
-      },
+    return BlocBuilder<PlansCubit, PlansState>(
       builder: (context, state) {
         if (state is PlansError) {
           return SizedBox.shrink();
@@ -76,12 +67,21 @@ class BottomActionsButtons extends StatelessWidget {
                   child: FilledButton.tonalIcon(
                     onPressed: () async {
                       if (state is PlansLoaded) {
-                        await context.read<PlansCubit>().savePlan(
-                          TripModel(
-                            name: "Test 1",
-                            places: state.planPlacesList,
-                          ),
+                        final PlansCubit cubit = context.read<PlansCubit>();
+                        final String? tripName = await showDialog<String?>(
+                          context: context,
+                          builder: (context) => TripNameDialog(),
                         );
+                        if (tripName != null && tripName.isNotEmpty) {
+                          await cubit.savePlan(
+                            TripModel(
+                              name: tripName.capitalize,
+                              places: state.planPlacesList,
+                              cityName: state.cityName,
+                              tripDuration: state.tripDuration
+                            ),
+                          );
+                        }
                       }
                     },
                     style: FilledButton.styleFrom(

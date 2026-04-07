@@ -32,6 +32,7 @@ class AppTheme {
       onTertiaryFixed: LightColors.forthText,
       // Border
       outline: LightColors.border,
+      error: LightColors.error,
     ),
     scaffoldBackgroundColor: LightColors.firstBackground,
     iconButtonTheme: IconButtonThemeData(
@@ -100,6 +101,53 @@ class AppTheme {
         ),
       ),
     ],
+    dialogTheme: DialogThemeData(
+      backgroundColor: LightColors.firstBackground,
+      titleTextStyle: GoogleFonts.inter(
+        color: LightColors.firstText,
+        fontSize: AppSizes.sp24,
+        fontWeight: FontWeight.bold,
+      ),
+      contentTextStyle: GoogleFonts.inter(
+        color: LightColors.thirdText,
+        fontSize: AppSizes.sp14,
+        fontWeight: FontWeight.w400,
+      ),
+    ),
+    inputDecorationTheme: InputDecorationTheme(
+      filled: true,
+      fillColor: LightColors.secBackground,
+      errorStyle: GoogleFonts.inter(
+        fontSize: AppSizes.sp10,
+        fontWeight: FontWeight.w600,
+        color: LightColors.error,
+      ),
+      hintStyle: GoogleFonts.inter(
+        fontSize: AppSizes.sp12,
+        fontWeight: FontWeight.w500,
+        color: LightColors.forthText,
+      ),
+      disabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(AppSizes.r8),
+        borderSide: BorderSide(color: LightColors.border),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(AppSizes.r8),
+        borderSide: BorderSide(color: LightColors.border),
+      ),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(AppSizes.r8),
+        borderSide: BorderSide(width: 2, color: LightColors.primary),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(AppSizes.r8),
+        borderSide: BorderSide(width: 2, color: LightColors.error),
+      ),
+      focusedErrorBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(AppSizes.r8),
+        borderSide: BorderSide(width: 2, color: LightColors.error),
+      ),
+    ),
   );
 
   static final ThemeData darkTheme = ThemeData();

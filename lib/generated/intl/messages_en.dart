@@ -26,9 +26,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "Of": MessageLookupByLibrary.simpleMessage("of"),
         "accountCreated":
             MessageLookupByLibrary.simpleMessage("Account Created!"),
+        "add": MessageLookupByLibrary.simpleMessage("ADD"),
         "alreadyHaveAnAccount":
             MessageLookupByLibrary.simpleMessage("Already have an account?"),
         "alreadyhavea": MessageLookupByLibrary.simpleMessage("Already have a"),
+        "alternativePlaces":
+            MessageLookupByLibrary.simpleMessage("Alternative Places"),
+        "cancle": MessageLookupByLibrary.simpleMessage("cancle"),
         "checkYourEmail":
             MessageLookupByLibrary.simpleMessage("Check Your Email"),
         "checkyourinboxandclickthelinktoverifyyouraccount":
@@ -48,6 +52,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Create new password"),
         "dontHaveAnAccount":
             MessageLookupByLibrary.simpleMessage("Don\'t have an account?"),
+        "egSummerinCairo":
+            MessageLookupByLibrary.simpleMessage("e.g. Summer in Cairo"),
         "email": MessageLookupByLibrary.simpleMessage("Email"),
         "enterYourEmail":
             MessageLookupByLibrary.simpleMessage("Enter your email"),
@@ -75,6 +81,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "fullName": MessageLookupByLibrary.simpleMessage("Full Name"),
         "generateMyPlan":
             MessageLookupByLibrary.simpleMessage("Generate My Plan"),
+        "giveyourtripanametosaveitforlater":
+            MessageLookupByLibrary.simpleMessage(
+                "Give your trip a name to save it for later."),
         "halfDay": MessageLookupByLibrary.simpleMessage("Half Day"),
         "hello": MessageLookupByLibrary.simpleMessage("Hello, "),
         "hidePassword": MessageLookupByLibrary.simpleMessage("Hide Password"),
@@ -95,6 +104,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("No cities found"),
         "nodescriptionavailable":
             MessageLookupByLibrary.simpleMessage("No description available"),
+        "noplacesavailableforthisplan": MessageLookupByLibrary.simpleMessage(
+            "No places available for this plan"),
         "ok": MessageLookupByLibrary.simpleMessage("Ok"),
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "passwordResetSuccessful":
@@ -105,6 +116,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Password should be 8 chars or more!"),
         "personalizeYourTrip":
             MessageLookupByLibrary.simpleMessage("Personalize Your Trip"),
+        "placeRemovedSuccessfully":
+            MessageLookupByLibrary.simpleMessage("Place Removed successfully"),
         "pleaseConfirmYourPassword": MessageLookupByLibrary.simpleMessage(
             "Please Confirm Your Password."),
         "pleaseEnterYourEmail":
@@ -118,9 +131,15 @@ class MessageLookup extends MessageLookupByLibrary {
                 "Please check your inbox and use the token to reset your password."),
         "popularCities": MessageLookupByLibrary.simpleMessage("Popular Cities"),
         "regenerate": MessageLookupByLibrary.simpleMessage("Regenerate"),
+        "remove": MessageLookupByLibrary.simpleMessage("Remove"),
+        "replace": MessageLookupByLibrary.simpleMessage("Replace"),
+        "replacingyourmissedslotat": MessageLookupByLibrary.simpleMessage(
+            "Replacing your missed slot at "),
         "resetPassword": MessageLookupByLibrary.simpleMessage("Reset Password"),
         "resetToken": MessageLookupByLibrary.simpleMessage("Reset Token"),
+        "save": MessageLookupByLibrary.simpleMessage("save"),
         "savePlan": MessageLookupByLibrary.simpleMessage("Save Plan"),
+        "saveYourTrip": MessageLookupByLibrary.simpleMessage("Save Your Trip"),
         "searchForACity":
             MessageLookupByLibrary.simpleMessage("Search for a city.."),
         "searchResults": MessageLookupByLibrary.simpleMessage("Search Results"),
@@ -137,6 +156,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Smart Egypt Day"),
         "smartGuide": MessageLookupByLibrary.simpleMessage("Smart Guide"),
         "step": MessageLookupByLibrary.simpleMessage("Step"),
+        "suggestionsforyour":
+            MessageLookupByLibrary.simpleMessage("Suggestions for your"),
         "thenTryToLogin":
             MessageLookupByLibrary.simpleMessage("Then Try To Login."),
         "thisFieldIsRequired":
@@ -147,6 +168,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "travelTips": MessageLookupByLibrary.simpleMessage("Travel Tips"),
         "tripGenie": MessageLookupByLibrary.simpleMessage("Trip Genie"),
         "tripPlan": MessageLookupByLibrary.simpleMessage("Trip Plan"),
+        "tripin": MessageLookupByLibrary.simpleMessage("trip in"),
         "tryAgain": MessageLookupByLibrary.simpleMessage("Try Again"),
         "user": MessageLookupByLibrary.simpleMessage("User"),
         "welcomeBack": MessageLookupByLibrary.simpleMessage("Welcome Back"),

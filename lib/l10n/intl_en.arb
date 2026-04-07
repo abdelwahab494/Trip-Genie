@@ -82,6 +82,19 @@
   "tryAgain": "Try Again",
   "totalStops": "Total Stops",
   "totalDuration": "Total Duration",
-  "regenerate" : "Regenerate",
-  "savePlan" : "Save Plan"
+  "regenerate": "Regenerate",
+  "savePlan": "Save Plan",
+  "saveYourTrip": "Save Your Trip",
+  "giveyourtripanametosaveitforlater": "Give your trip a name to save it for later.",
+  "egSummerinCairo": "e.g. Summer in Cairo",
+  "save": "save",
+  "cancle": "cancle",
+  "remove": "Remove",
+  "replace": "Replace",
+  "placeRemovedSuccessfully": "Place Removed successfully",
+  "noplacesavailableforthisplan": "No places available for this plan",
+  "alternativePlaces": "Alternative Places",
+  "suggestionsforyour" : "Suggestions for your",
+  "tripin" : "trip in",
+  "replacingyourmissedslotat":"Replacing your missed slot at ", "add" : "ADD"
 }

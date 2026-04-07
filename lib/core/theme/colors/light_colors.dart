@@ -22,7 +22,7 @@ class LightColors {
   static const Color onSurface = Color(0xff1f1b13);
 
   // Decorative / Utility
-  static const Color error = Color(0xffba1a1a);
+  // static const Color error = Color(0xffba1a1a);
   static const Color outline = Color(0xff7d7667);
 
   static const Color grey = Color(0xff334155);
@@ -37,4 +37,5 @@ class LightColors {
   static const Color forthText = Color(0xff94A3B8);
 
   static const Color border = Color(0xffE2E8F0);
+  static const Color error = Color(0xFFD32F2F);
 }

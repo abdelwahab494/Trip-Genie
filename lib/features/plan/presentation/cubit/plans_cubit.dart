@@ -23,8 +23,46 @@ class PlansCubit extends Cubit<PlansState> {
 
     result.fold(
       (failure) => emit(PlansError(failure.message)),
-      (planPlacesList) => emit(PlansLoaded(planPlacesList: planPlacesList)),
+      (planPlacesList) => emit(
+        PlansLoaded(
+          planPlacesList: planPlacesList,
+          cityName: cityName,
+          category: category,
+          tripDuration: tripDuration,
+          placesList: planPlacesList,
+        ),
+      ),
     );
+  }
+
+  void removeFromPlan(int index) {
+    if (state is! PlansLoaded) return;
+    final current = state as PlansLoaded;
+
+    final updatedList = List<PlacesModel>.from(current.planPlacesList)
+      ..removeAt(index);
+
+    emit(current.copyWith(planPlacesList: updatedList));
+  }
+
+  void replaceInPlan(PlacesModel oldPlace, PlacesModel newPlace) {
+    if (state is! PlansLoaded) return;
+
+    final current = state as PlansLoaded;
+
+    final list = List<PlacesModel>.from(current.planPlacesList);
+
+    final index = list.indexWhere(
+      (place) => place.id == oldPlace.id || place.name == oldPlace.name,
+    );
+
+    if (index != -1) {
+      list[index] = newPlace;
+      emit(current.copyWith(planPlacesList: list));
+    } else {
+      list.add(newPlace);
+      emit(current.copyWith(planPlacesList: list));
+    }
   }
 
   Future<void> savePlan(TripModel trip) async {

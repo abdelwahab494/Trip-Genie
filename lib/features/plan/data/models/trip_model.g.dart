@@ -19,17 +19,26 @@ class TripModelAdapter extends TypeAdapter<TripModel> {
     return TripModel(
       name: fields[0] as String,
       places: (fields[1] as List).cast<PlacesModel>(),
+      cityName: fields[2] as String,
+      tripDuration: fields[3] as String,
+      createdAt: fields[4] as DateTime?,
     );
   }
 
   @override
   void write(BinaryWriter writer, TripModel obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.name)
       ..writeByte(1)
-      ..write(obj.places);
+      ..write(obj.places)
+      ..writeByte(2)
+      ..write(obj.cityName)
+      ..writeByte(3)
+      ..write(obj.tripDuration)
+      ..writeByte(4)
+      ..write(obj.createdAt);
   }
 
   @override
