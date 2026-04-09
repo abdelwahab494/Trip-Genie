@@ -3,8 +3,9 @@ import 'package:trip_genie/core/manager/app_imports.dart';
 
 class AuthRepoImpl implements AuthRepo {
   final AuthService authService;
+  final CachedUserDatasource userDatasource;
 
-  AuthRepoImpl(this.authService);
+  AuthRepoImpl( {required this.authService, required this.userDatasource});
 
   @override
   Future<Either<Failure, UserModel>> signIn({
@@ -17,11 +18,8 @@ class AuthRepoImpl implements AuthRepo {
         password: password,
       );
 
-      final UserModel model = UserModel(
-        id: response.user!.id,
-        email: response.user!.email,
-        name: response.user!.userMetadata?["name"],
-      );
+      final UserModel model = UserModel.fromUser(response.user!);
+      await userDatasource.cacheUser(model);
 
       return Right(model);
     } catch (error) {
@@ -42,11 +40,7 @@ class AuthRepoImpl implements AuthRepo {
         password: password,
       );
 
-      final UserModel model = UserModel(
-        id: response.user!.id,
-        email: response.user!.email,
-        name: response.user!.userMetadata?["name"],
-      );
+      final UserModel model = UserModel.fromUser(response.user!);
 
       return Right(model);
     } catch (error) {
@@ -58,6 +52,7 @@ class AuthRepoImpl implements AuthRepo {
   Future<Either<Failure, Unit>> signOut() async {
     try {
       await authService.signOut();
+      await userDatasource.deleteCachedUser();
       return Right(unit);
     } catch (error) {
       return Left(SupabaseFailure.fromException(error));

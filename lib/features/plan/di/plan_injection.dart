@@ -6,16 +6,16 @@ void planInjection() {
   }
 
   getIt.registerLazySingleton<PlansService>(() => PlansService());
-  if (!getIt.isRegistered<LocalDataServices>()) {
-    getIt.registerLazySingleton<LocalDataServices>(
-      () => HiveLocalDataServices(tripBox: getIt()),
+  if (!getIt.isRegistered<TripPlanDatasource>()) {
+    getIt.registerLazySingleton<TripPlanDatasource>(
+      () => HiveTripPlanDatasource(tripBox: getIt()),
     );
   }
 
   getIt.registerLazySingleton<PlansRepo>(
     () => PlansRepoImpl(
       service: getIt<PlansService>(),
-      localServices: getIt<LocalDataServices>(),
+      localServices: getIt<TripPlanDatasource>(),
     ),
   );
 

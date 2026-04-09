@@ -4,13 +4,14 @@ import 'package:dartz/dartz.dart';
 import 'package:trip_genie/core/manager/app_imports.dart';
 
 class TravelTipsRepoImpl implements TravelTipsRepo {
-  final TravelTipsService _tipsService;
-  TravelTipsRepoImpl(this._tipsService);
+  final TravelTipsService tipsService;
+  final TravelTipsLocalDatasource localDatasource;
+  TravelTipsRepoImpl({required this.tipsService, required this.localDatasource});
 
   @override
   Future<Either<GeminiFailure, List<TravelTipModel>>> getTravelTips() async {
     try {
-      final String tipsString = await _tipsService.generateTips(
+      final String tipsString = await tipsService.generateTips(
         Part.text("""
 You are a travel assistant specialized in tourism in Egypt.
 
@@ -51,27 +52,17 @@ Do not include any explanation, text, or formatting outside the JSON array.
       final List<TravelTipModel> tipsModelList = tipsMapsList
           .map((e) => TravelTipModel.fromJson(e))
           .toList();
+      await localDatasource.setTipsList(tipsModelList);
 
       return Right(tipsModelList);
     } catch (e) {
       return Left(GeminiFailure(e.toString()));
     }
   }
-
-  // List<TravelTipModel> _parseGeminiResponse(String text) {
-  //   List<TravelTipModel> tips = [];
-  //   final lines = text.split('\n').where((l) => l.contains(':')).toList();
-  //   for (var line in lines) {
-  //     final parts = line.split(':');
-  //     if (parts.length >= 2) {
-  //       tips.add(
-  //         TravelTipModel(
-  //           category: parts[0].trim(),
-  //           description: parts.sublist(1).join(':').trim(),
-  //         ),
-  //       );
-  //     }
-  //   }
-  //   return tips;
-  // }
+  
+  @override
+  List<TravelTipModel> getCachedTips() {
+      final List<TravelTipModel> tipsList = localDatasource.getTipsList();
+      return tipsList;
+  }
 }

@@ -5,7 +5,7 @@ part 'travel_tips_state.dart';
 class TravelTipsCubit extends Cubit<TravelTipsState> {
   final TravelTipsRepo travelTipsRepo;
 
-  TravelTipsCubit(this.travelTipsRepo) : super(TravelTipsInitial());
+  TravelTipsCubit({required this.travelTipsRepo}) : super(TravelTipsInitial());
 
   List<TravelTipModel>? _cachedTips;
 
@@ -14,7 +14,7 @@ class TravelTipsCubit extends Cubit<TravelTipsState> {
       emit(TravelTipsLoaded(_cachedTips!));
       return;
     }
-    final List<TravelTipModel> tipsCached = TravelTipsPrefs.getTipsList();
+    final List<TravelTipModel> tipsCached = travelTipsRepo.getCachedTips();
     emit(TravelTipsLoading(tipsCached));
 
     debugPrint("start loading ..");
@@ -29,7 +29,6 @@ class TravelTipsCubit extends Cubit<TravelTipsState> {
         debugPrint("sucess");
         _cachedTips = tips;
         emit(TravelTipsLoaded(tips));
-        await TravelTipsPrefs.setTipsList(tips);
       },
     );
   }

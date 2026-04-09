@@ -2,7 +2,6 @@ import 'core/manager/app_imports.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await PrefsHelper.init();
   await HiveHelper.init();
   setupServiceLocator();
 

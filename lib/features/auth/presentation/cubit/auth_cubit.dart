@@ -12,12 +12,10 @@ class AuthCubit extends Cubit<AuthState> {
 
     final result = await authRepo.signIn(email: email, password: password);
 
+    if (isClosed) return;
+
     result.fold((failure) => emit(AuthError(failure.message)), (model) {
-      if (model.id != null) {
-        emit(AuthSuccess(model));
-      } else {
-        emit(AuthError("User not found"));
-      }
+      emit(AuthSuccess(model));
     });
   }
 
@@ -34,12 +32,10 @@ class AuthCubit extends Cubit<AuthState> {
       password: password,
     );
 
+    if (isClosed) return;
+
     result.fold((failure) => emit(AuthError(failure.message)), (model) {
-      if (model.id != null) {
-        emit(AuthSuccess(model));
-      } else {
-        emit(AuthError("User not found"));
-      }
+      emit(AuthSuccess(model));
     });
   }
 
@@ -47,6 +43,8 @@ class AuthCubit extends Cubit<AuthState> {
     emit(AuthLoading());
 
     final result = await authRepo.signOut();
+
+    if (isClosed) return;
 
     result.fold(
       (failure) => emit(AuthError(failure.message)),

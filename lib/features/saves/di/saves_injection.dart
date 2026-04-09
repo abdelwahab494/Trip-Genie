@@ -5,9 +5,9 @@ void savesInjection() {
     getIt.registerLazySingleton<Box<TripModel>>(() => HiveHelper.trips);
   }
 
-  if (!getIt.isRegistered<LocalDataServices>()) {
-    getIt.registerLazySingleton<LocalDataServices>(
-      () => HiveLocalDataServices(tripBox: getIt()),
+  if (!getIt.isRegistered<TripPlanDatasource>()) {
+    getIt.registerLazySingleton<TripPlanDatasource>(
+      () => HiveTripPlanDatasource(tripBox: getIt()),
     );
   }
 

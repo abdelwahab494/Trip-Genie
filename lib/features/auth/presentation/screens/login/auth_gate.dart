@@ -18,7 +18,9 @@ class AuthGate extends StatelessWidget {
           return const Center(child: CircularProgressIndicator());
         }
 
-        final bool isLoggedIn = snapshot.data?.session?.user != null;
+        final bool isLoggedIn =
+            snapshot.data?.session?.user != null &&
+            getIt<CachedUserDatasource>().isLoggedIn;
 
         if (isLoggedIn) {
           return const NavigationRoot();

@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 import 'package:trip_genie/core/manager/app_imports.dart';
 
 class SavesRepoImpl extends SavesRepo {
-  final LocalDataServices services;
+  final TripPlanDatasource services;
 
   SavesRepoImpl(this.services);
 

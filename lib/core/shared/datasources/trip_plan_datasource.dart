@@ -1,6 +1,6 @@
 import 'package:trip_genie/core/manager/app_imports.dart';
 
-abstract class LocalDataServices {
+abstract class TripPlanDatasource {
   Future<void> addTripPlan(TripModel trip);
 
   Future<List<TripModel>> getTripPlans();
@@ -8,10 +8,10 @@ abstract class LocalDataServices {
   Future<void> deleteTripPlan(int index);
 }
 
-class HiveLocalDataServices extends LocalDataServices {
+class HiveTripPlanDatasource extends TripPlanDatasource {
   final Box<TripModel> tripBox;
 
-  HiveLocalDataServices({required this.tripBox});
+  HiveTripPlanDatasource({required this.tripBox});
 
   @override
   Future<void> addTripPlan(TripModel trip) async {

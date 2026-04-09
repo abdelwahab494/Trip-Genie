@@ -28,9 +28,9 @@ class HomeSliverAppBar extends StatelessWidget {
               if (state is UserLoading) {
                 return Skeletonizer(
                   effect: ShimmerEffect(
-              baseColor: Colors.grey.shade500,
-              highlightColor: Colors.white,
-            ),
+                    baseColor: Colors.grey.shade500,
+                    highlightColor: Colors.white,
+                  ),
                   child: RichText(
                     text: TextSpan(
                       text: s.hello,
@@ -100,7 +100,7 @@ class HomeSliverAppBar extends StatelessWidget {
               icon: Icon(Icons.notifications, size: AppSizes.w16),
               color: context.primary,
               onPressed: () async {
-                await AuthRepoImpl(AuthService()).signOut();
+                await getIt<AuthRepo>().signOut();
                 if (context.mounted) {
                   Navigator.of(context).pushAndRemoveUntil(
                     MaterialPageRoute(builder: (c) => LoginScreen()),

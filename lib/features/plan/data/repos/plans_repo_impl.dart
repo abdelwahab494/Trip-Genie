@@ -3,7 +3,7 @@ import 'package:trip_genie/core/manager/app_imports.dart';
 
 class PlansRepoImpl implements PlansRepo {
   final PlansService service;
-  final LocalDataServices localServices;
+  final TripPlanDatasource localServices;
 
   const PlansRepoImpl({required this.service, required this.localServices});
 
