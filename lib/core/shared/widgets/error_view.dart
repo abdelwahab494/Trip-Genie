@@ -1,7 +1,12 @@
 import 'package:trip_genie/core/manager/app_imports.dart';
 
-class PlanError extends StatelessWidget {
-  const PlanError({super.key, required this.message, required this.onRetry, required this.buttonLabel});
+class ErrorView extends StatelessWidget {
+  const ErrorView({
+    super.key,
+    required this.message,
+    required this.onRetry,
+    required this.buttonLabel,
+  });
   final String message;
   final String buttonLabel;
   final VoidCallback onRetry;

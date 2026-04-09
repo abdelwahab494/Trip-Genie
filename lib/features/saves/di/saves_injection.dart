@@ -1,23 +1,17 @@
 import 'package:trip_genie/core/manager/app_imports.dart';
 
-void planInjection() {
+void savesInjection() {
   if (!getIt.isRegistered<Box<TripModel>>()) {
     getIt.registerLazySingleton<Box<TripModel>>(() => HiveHelper.trips);
   }
 
-  getIt.registerLazySingleton<PlansService>(() => PlansService());
   if (!getIt.isRegistered<LocalDataServices>()) {
     getIt.registerLazySingleton<LocalDataServices>(
       () => HiveLocalDataServices(tripBox: getIt()),
     );
   }
 
-  getIt.registerLazySingleton<PlansRepo>(
-    () => PlansRepoImpl(
-      service: getIt<PlansService>(),
-      localServices: getIt<LocalDataServices>(),
-    ),
-  );
+  getIt.registerLazySingleton<SavesRepo>(() => SavesRepoImpl(getIt()));
 
-  getIt.registerFactory<PlansCubit>(() => PlansCubit(getIt<PlansRepo>()));
+  getIt.registerFactory<SavesCubit>(() => SavesCubit(getIt()));
 }

@@ -1,15 +1,16 @@
 import 'package:trip_genie/core/manager/app_imports.dart';
 
-class CustomTextFieldHome extends StatelessWidget {
-  const CustomTextFieldHome({super.key, this.onChanged});
+class SearchField extends StatelessWidget {
+  const SearchField({super.key, this.onChanged, required this.hintText});
   final void Function(String)? onChanged;
+  final String hintText;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
       onChanged: onChanged,
       decoration: InputDecoration(
-        hintText: "Search for a city..",
+        hintText: hintText,
 
         hintStyle: AppFonts.inter16Medium(context).copyWith(
           color: Theme.of(context).colorScheme.secondary.withValues(alpha: 0.5),

@@ -44,24 +44,4 @@ class PlansRepoImpl implements PlansRepo {
       return Left(HiveFailure("Failed To Save The Plan"));
     }
   }
-
-  @override
-  Future<Either<Failure, List<TripModel>>> getTripPlans() async {
-    try {
-      final List<TripModel> plansList = await localServices.getTripPlans();
-      return Right(plansList);
-    } catch (e) {
-      return Left(HiveFailure("Failed to Load Trips Plans"));
-    }
-  }
-
-  @override
-  Future<Either<Failure, void>> deleteTripPlan(int index) async {
-    try {
-      await localServices.deleteTripPlan(index);
-      return Right(null);
-    } catch (e) {
-      return Left(HiveFailure("Failed to Delete Trip Plan"));
-    }
-  }
 }

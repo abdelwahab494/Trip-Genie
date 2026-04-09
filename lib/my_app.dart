@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
           providers: [
             BlocProvider(create: (context) => getIt<HomeCubit>()),
             BlocProvider(create: (context) => getIt<TravelTipsCubit>()),
+            BlocProvider(create: (context) => getIt<SavesCubit>()),
           ],
           child: MaterialApp(
             onGenerateRoute: Routing.generateRoute,

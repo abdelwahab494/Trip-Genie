@@ -100,6 +100,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Login to continue your journey"),
         "multiDay": MessageLookupByLibrary.simpleMessage("Multi Day"),
         "newPassword": MessageLookupByLibrary.simpleMessage("New Password"),
+        "noSavedTripsYet":
+            MessageLookupByLibrary.simpleMessage("No Saved Trips Yet"),
         "nocitiesfound":
             MessageLookupByLibrary.simpleMessage("No cities found"),
         "nodescriptionavailable":
@@ -140,6 +142,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "save": MessageLookupByLibrary.simpleMessage("save"),
         "savePlan": MessageLookupByLibrary.simpleMessage("Save Plan"),
         "saveYourTrip": MessageLookupByLibrary.simpleMessage("Save Your Trip"),
+        "savedPlans": MessageLookupByLibrary.simpleMessage("Saved Plans"),
+        "search": MessageLookupByLibrary.simpleMessage("Search..."),
         "searchForACity":
             MessageLookupByLibrary.simpleMessage("Search for a city.."),
         "searchResults": MessageLookupByLibrary.simpleMessage("Search Results"),
@@ -156,6 +160,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Smart Egypt Day"),
         "smartGuide": MessageLookupByLibrary.simpleMessage("Smart Guide"),
         "step": MessageLookupByLibrary.simpleMessage("Step"),
+        "stops": MessageLookupByLibrary.simpleMessage("Stops"),
         "suggestionsforyour":
             MessageLookupByLibrary.simpleMessage("Suggestions for your"),
         "thenTryToLogin":

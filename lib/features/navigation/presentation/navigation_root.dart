@@ -28,6 +28,9 @@ class _NavigationRootState extends State<NavigationRoot> {
             setState(() {
               currentIndex = value;
             });
+            if (ScreensEnum.values[value] == ScreensEnum.saves) {
+              context.read<SavesCubit>().loadTrips();
+            }
           },
           items: ScreensEnum.values.asMap().entries.map((entry) {
             final index = entry.key;

@@ -15,7 +15,7 @@ enum ScreensEnum {
   ),
   saves(
     lable: "Saves",
-    screen: Scaffold(),
+    screen: SavesScreen(),
     selectedIcon: Icons.bookmark_rounded,
     unSelectedIcon: Icons.bookmark_outline,
   ),

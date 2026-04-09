@@ -33,7 +33,8 @@ class HeaderSectionComponent extends StatelessWidget {
                 color: context.secBackground.withValues(alpha: 0.7),
                 borderRadius: BorderRadius.circular(AppSizes.r8),
               ),
-              child: CustomTextFieldHome(
+              child: SearchField(
+                hintText: s.searchForACity,
                 onChanged: (value) {
                   context.read<HomeCubit>().searchCities(value);
                 },

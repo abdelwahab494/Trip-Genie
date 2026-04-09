@@ -1031,6 +1031,46 @@ class S {
       args: [],
     );
   }
+
+  /// `Saved Plans`
+  String get savedPlans {
+    return Intl.message(
+      'Saved Plans',
+      name: 'savedPlans',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Search...`
+  String get search {
+    return Intl.message(
+      'Search...',
+      name: 'search',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No Saved Trips Yet`
+  String get noSavedTripsYet {
+    return Intl.message(
+      'No Saved Trips Yet',
+      name: 'noSavedTripsYet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Stops`
+  String get stops {
+    return Intl.message(
+      'Stops',
+      name: 'stops',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

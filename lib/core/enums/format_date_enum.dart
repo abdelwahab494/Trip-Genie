@@ -1,0 +1,1 @@
+enum FormatDateEnum {dateOnly, dateTime, difference}

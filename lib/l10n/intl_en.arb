@@ -94,7 +94,12 @@
   "placeRemovedSuccessfully": "Place Removed successfully",
   "noplacesavailableforthisplan": "No places available for this plan",
   "alternativePlaces": "Alternative Places",
-  "suggestionsforyour" : "Suggestions for your",
-  "tripin" : "trip in",
-  "replacingyourmissedslotat":"Replacing your missed slot at ", "add" : "ADD"
+  "suggestionsforyour": "Suggestions for your",
+  "tripin": "trip in",
+  "replacingyourmissedslotat": "Replacing your missed slot at ",
+  "add": "ADD",
+  "savedPlans": "Saved Plans",
+  "search": "Search...",
+  "noSavedTripsYet": "No Saved Trips Yet",
+  "stops": "Stops"
 }

@@ -63,7 +63,7 @@ class _PlanScreenState extends State<PlanScreen> {
                         );
                       }
                       if (state is PlansError) {
-                        return PlanError(
+                        return ErrorView(
                           message: state.message,
                           onRetry: () async =>
                               await context.read<PlansCubit>().generatePlan(

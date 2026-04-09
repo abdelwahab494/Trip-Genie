@@ -5,6 +5,7 @@ class AppSizes {
 
   //* Height Utils
   static final double h0 = 0.h;
+  static final double h2 = 2.h;
   static final double h4 = 4.h;
   static final double h5 = 5.h;
   static final double h6 = 6.h;
@@ -33,6 +34,7 @@ class AppSizes {
   static final double h70 = 70.h;
   static final double h75 = 75.h;
   static final double h80 = 80.h;
+  static final double h140 = 140.h;
   static final double h150 = 150.h;
   static final double h200 = 200.h;
   static final double h204 = 204.39.h;

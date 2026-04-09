@@ -17,7 +17,7 @@ class TripModel extends HiveObject {
   final String tripDuration;
 
   @HiveField(4)
-  final DateTime? createdAt;
+  final DateTime createdAt;
 
   TripModel({
     required this.name,

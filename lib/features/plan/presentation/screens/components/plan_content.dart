@@ -211,16 +211,24 @@ class _PlanContentState extends State<PlanContent> {
                           children: [
                             ClipRRect(
                               borderRadius: BorderRadius.circular(12),
-                              child: Image.network(
-                                place.images![0],
-                                width: double.infinity,
-                                height: 160,
+                              child: CachedNetworkImage(
+                                imageUrl: place.images![0],
                                 fit: BoxFit.cover,
+                                width: double.infinity,
+                                height: AppSizes.h140,
+                                errorWidget: (context, url, error) => Container(
+                                  width: double.infinity,
+                                  height: AppSizes.h140,
+                                  color: Colors.grey[300],
+                                  child: const Icon(Icons.image_not_supported),
+                                ),
                               ),
                             ),
                             SizedBox(height: AppSizes.h12),
                             Text(
                               place.description ?? "",
+                              maxLines: 4,
+                              overflow: TextOverflow.ellipsis,
                               style: GoogleFonts.inter(
                                 fontSize: AppSizes.sp14,
                                 color: context.thirdText,
@@ -239,7 +247,7 @@ class _PlanContentState extends State<PlanContent> {
                   currentStep: _currentStep,
                 ),
               )
-            : PlanError(
+            : ErrorView(
                 message: s.noplacesavailableforthisplan,
                 onRetry: () => context.read<PlansCubit>().generatePlan(
                   cityName: widget.state.cityName,
