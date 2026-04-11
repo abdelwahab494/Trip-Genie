@@ -922,16 +922,6 @@ class S {
     );
   }
 
-  /// `save`
-  String get save {
-    return Intl.message(
-      'save',
-      name: 'save',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `cancle`
   String get cancle {
     return Intl.message(
@@ -1067,6 +1057,166 @@ class S {
     return Intl.message(
       'Stops',
       name: 'stops',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Profile`
+  String get editProfile {
+    return Intl.message(
+      'Edit Profile',
+      name: 'editProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save`
+  String get save {
+    return Intl.message(
+      'Save',
+      name: 'save',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save Changes`
+  String get saveChanges {
+    return Intl.message(
+      'Save Changes',
+      name: 'saveChanges',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change Profile Photo`
+  String get changeProfilePhoto {
+    return Intl.message(
+      'Change Profile Photo',
+      name: 'changeProfilePhoto',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Smart Egypt Day Attendee`
+  String get smartEgyptDayAttendee {
+    return Intl.message(
+      'Smart Egypt Day Attendee',
+      name: 'smartEgyptDayAttendee',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Username`
+  String get username {
+    return Intl.message(
+      'Username',
+      name: 'username',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your username`
+  String get usernamePlaceholder {
+    return Intl.message(
+      'Enter your username',
+      name: 'usernamePlaceholder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email Address`
+  String get emailAddress {
+    return Intl.message(
+      'Email Address',
+      name: 'emailAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your email address`
+  String get emailPlaceholder {
+    return Intl.message(
+      'Enter your email address',
+      name: 'emailPlaceholder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone Number`
+  String get phoneNumber {
+    return Intl.message(
+      'Phone Number',
+      name: 'phoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter your Phone number`
+  String get phonePlaceholder {
+    return Intl.message(
+      'Enter your Phone number',
+      name: 'phonePlaceholder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bio`
+  String get bio {
+    return Intl.message(
+      'Bio',
+      name: 'bio',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tell us about yourself...`
+  String get bioPlaceholder {
+    return Intl.message(
+      'Tell us about yourself...',
+      name: 'bioPlaceholder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile`
+  String get profile {
+    return Intl.message(
+      'Profile',
+      name: 'profile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit`
+  String get edit {
+    return Intl.message(
+      'Edit',
+      name: 'edit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Retry`
+  String get retry {
+    return Intl.message(
+      'Retry',
+      name: 'retry',
       desc: '',
       args: [],
     );

@@ -11,7 +11,10 @@ class CustomTextField extends StatefulWidget {
     this.fieldTypesEnum = TextFieldTypesEnum.text,
     this.readOnly = false,
     this.showPastButton = false,
+    this.maxLines = 1,
+    this.inputFormatters,
   });
+
   final TextEditingController controller;
   final String? Function(String?)? validator;
   final String hint;
@@ -19,6 +22,8 @@ class CustomTextField extends StatefulWidget {
   final TextFieldTypesEnum fieldTypesEnum;
   final bool readOnly;
   final bool showPastButton;
+  final int maxLines;
+  final List<TextInputFormatter>? inputFormatters;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
@@ -26,6 +31,7 @@ class CustomTextField extends StatefulWidget {
 
 class _CustomTextFieldState extends State<CustomTextField> {
   late bool isPassword;
+
   @override
   void initState() {
     super.initState();
@@ -46,27 +52,33 @@ class _CustomTextFieldState extends State<CustomTextField> {
             widget.title!,
             style: AppFonts.inter14SemiBold(
               context,
-            ).copyWith(color: context.sectText),
+            ).copyWith(color: theme.colorScheme.tertiary),
           ),
         Gap(AppSizes.h8),
         TextFormField(
+          inputFormatters: widget.inputFormatters,
+          enabled: !widget.readOnly,
           controller: widget.controller,
           readOnly: widget.readOnly,
           validator: widget.validator,
-          cursorColor: context.primary,
+          cursorColor: theme.colorScheme.primary,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           obscureText: isPassword,
+          maxLines: isPassword ? 1 : widget.maxLines,
           keyboardType: switch (widget.fieldTypesEnum) {
             TextFieldTypesEnum.text => TextInputType.text,
             TextFieldTypesEnum.email => TextInputType.emailAddress,
             TextFieldTypesEnum.password => TextInputType.visiblePassword,
+            TextFieldTypesEnum.phone => TextInputType.phone,
+            TextFieldTypesEnum.bio => TextInputType.multiline,
           },
-          // style: theme.textTheme.bodyLarge!.copyWith(color: context.firstText),
           decoration: InputDecoration(
             filled: true,
-            fillColor: context.secBackground,
+            fillColor: Colors.white,
+
             suffixIcon: widget.showPastButton
                 ? IconButton(
+                    icon: Icon(Icons.paste, color: Colors.grey[500]),
                     onPressed: () async {
                       final clipboardData = await Clipboard.getData(
                         'text/plain',
@@ -75,7 +87,6 @@ class _CustomTextFieldState extends State<CustomTextField> {
                         widget.controller.text = clipboardData.text!;
                       }
                     },
-                    icon: Icon(Icons.paste, color: context.forthText),
                   )
                 : widget.fieldTypesEnum == TextFieldTypesEnum.password
                 ? IconButton(
@@ -86,42 +97,45 @@ class _CustomTextFieldState extends State<CustomTextField> {
                       isPassword
                           ? Icons.visibility_rounded
                           : Icons.visibility_off_rounded,
-                      color: context.forthText,
+                      color: Colors.grey[500],
                     ),
                   )
                 : null,
             errorStyle: AppFonts.inter14SemiBold(
               context,
             ).copyWith(color: theme.colorScheme.error, fontSize: AppSizes.sp10),
-            hintText: widget.hint,
+            hintText: widget.controller.text.isEmpty && widget.readOnly
+                ? 'NOT SET'
+                : widget.hint,
             hintStyle: AppFonts.inter16Medium(
               context,
-            ).copyWith(color: context.forthText, fontSize: AppSizes.sp12),
+            ).copyWith(color: Colors.grey, fontSize: AppSizes.sp12),
             disabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(AppSizes.r8),
-              borderSide: BorderSide(color: context.border),
+              borderSide: BorderSide(
+                color: theme.colorScheme.tertiary.withValues(alpha: 0.2),
+              ),
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(AppSizes.r8),
-              borderSide: BorderSide(color: context.border),
+              borderSide: BorderSide(
+                color: theme.colorScheme.tertiary.withValues(alpha: 0.2),
+              ),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(AppSizes.r8),
-              borderSide: BorderSide(width: 2, color: context.primary),
+              borderSide: BorderSide(
+                width: 2,
+                color: theme.colorScheme.primary,
+              ),
             ),
             errorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(AppSizes.r8),
-              borderSide: BorderSide(
-                width: 2,
-                color: Theme.of(context).colorScheme.error,
-              ),
+              borderSide: BorderSide(width: 2, color: theme.colorScheme.error),
             ),
             focusedErrorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(AppSizes.r8),
-              borderSide: BorderSide(
-                width: 2,
-                color: Theme.of(context).colorScheme.error,
-              ),
+              borderSide: BorderSide(width: 2, color: theme.colorScheme.error),
             ),
           ),
         ),

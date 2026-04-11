@@ -2,6 +2,8 @@ import 'package:trip_genie/core/manager/app_imports.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+  static final GlobalKey<NavigatorState> navigatorKey =
+      GlobalKey<NavigatorState>();
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +19,7 @@ class MyApp extends StatelessWidget {
             BlocProvider(create: (context) => getIt<SavesCubit>()),
           ],
           child: MaterialApp(
+            navigatorKey: navigatorKey,
             onGenerateRoute: Routing.generateRoute,
             title: 'Trip Genie',
             locale: const Locale("en"),

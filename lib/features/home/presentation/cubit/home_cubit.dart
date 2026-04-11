@@ -15,10 +15,16 @@ class HomeCubit extends Cubit<HomeState> {
 
     final cityResult = await repo.getAllCities();
 
-    cityResult.fold(
-      (failure) => emit(HomeError(failure.message)),
-      (cities) => emit(HomeLoaded(cities: cities)),
-    );
+    cityResult.fold((failure) => emit(HomeError(failure.message)), (cities) {
+      final result = repo.getCachedUser();
+
+      result.fold(
+        (failure) => MyApp.navigatorKey.currentState?.pushReplacement(
+          MaterialPageRoute(builder: (c) => LoginScreen()),
+        ),
+        (user) => emit(HomeLoaded(cities: cities, user: user)),
+      );
+    });
   }
 
   void searchCities(String query) {

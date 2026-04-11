@@ -6,12 +6,17 @@ mixin FormHelperMixin<T extends StatefulWidget> on State<T> {
   final TextEditingController emailC = TextEditingController();
   final TextEditingController passwordC = TextEditingController();
   final TextEditingController confirmPasswordC = TextEditingController();
+  final TextEditingController phoneC = TextEditingController();
+  final TextEditingController bioC = TextEditingController();
 
   @override
   void dispose() {
     super.dispose();
     emailC.dispose();
+    nameC.dispose();
     passwordC.dispose();
+    phoneC.dispose();
+    bioC.dispose();
     confirmPasswordC.dispose();
   }
 
@@ -26,7 +31,7 @@ mixin FormHelperMixin<T extends StatefulWidget> on State<T> {
     if (value == null || value.trim().isEmpty) {
       return S.of(context).pleaseEnterYourEmail;
     }
-    if (!value.endsWith("@gmail.com") || value.contains(" ")) {
+    if (!value.endsWith("@gmail.com")) {
       return S.of(context).invalidEmailFormat;
     }
     return null;
@@ -53,6 +58,18 @@ mixin FormHelperMixin<T extends StatefulWidget> on State<T> {
     if (password != confirmPassword) {
       return S.of(context).passworddoesntmatch;
     }
+    return null;
+  }
+
+  String? phoneValidator(String? value) {
+    if (value!.trim().length > 11) {
+      return 'Invalid phone number';
+    }
+    return null;
+  }
+
+  String? bioValidator(String? value) {
+    // Bio is optional; add rules here if needed.
     return null;
   }
 }

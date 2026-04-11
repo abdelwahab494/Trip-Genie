@@ -3,8 +3,12 @@ import 'package:trip_genie/core/manager/app_imports.dart';
 
 class HomeRepoImpl implements HomeRepo {
   final CitiesDatabaseService citiesDatabaseService;
+  final CachedUserDatasource localService;
 
-  HomeRepoImpl(this.citiesDatabaseService);
+  HomeRepoImpl({
+    required this.citiesDatabaseService,
+    required this.localService,
+  });
 
   @override
   Future<Either<SupabaseFailure, List<CityModel>>> getAllCities() async {
@@ -45,6 +49,15 @@ class HomeRepoImpl implements HomeRepo {
       return right(res);
     } catch (e) {
       return left(SupabaseFailure.fromException(e));
+    }
+  }
+
+  @override
+  Either<Failure, UserModel?> getCachedUser() {
+    try {
+      return Right(localService.getCachedUser());
+    } catch (e) {
+      return Left(HiveFailure("Failed to load User"));
     }
   }
 }

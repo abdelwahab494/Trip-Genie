@@ -1,10 +1,11 @@
 import 'package:trip_genie/core/manager/app_imports.dart';
+import 'package:trip_genie/features/profile/data/repo/profile_repo_impl.dart';
 
 void profileInjection() {
   if (!getIt.isRegistered<Box<UserModel>>()) {
     getIt.registerLazySingleton<Box<UserModel>>(() => HiveHelper.user);
   }
-  
+
   if (!getIt.isRegistered<AuthService>()) {
     getIt.registerLazySingleton<AuthService>(() => AuthService());
   }
@@ -15,14 +16,9 @@ void profileInjection() {
     );
   }
 
-  if (!getIt.isRegistered<AuthRepo>()) {
-    getIt.registerLazySingleton<AuthRepo>(
-      () => AuthRepoImpl(
-        authService: getIt<AuthService>(),
-        userDatasource: getIt<CachedUserDatasource>(),
-      ),
-    );
-  }
+  getIt.registerLazySingleton<ProfileService>(() => ProfileService(getIt<AuthService>()));
 
-  getIt.registerFactory<UserCubit>(() => UserCubit(getIt()));
+  getIt.registerLazySingleton<ProfileRepo>(() => ProfileRepoImpl(getIt<ProfileService>()));
+
+  getIt.registerFactory<ProfileCubit>(() => ProfileCubit(getIt<ProfileRepo>()));
 }

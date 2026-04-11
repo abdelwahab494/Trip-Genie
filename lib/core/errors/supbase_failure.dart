@@ -32,3 +32,11 @@ class AuthFailure extends SupabaseFailure {
 class StorageFailure extends SupabaseFailure {
   const StorageFailure(super.message);
 }
+
+class UnExpectedFailure extends SupabaseFailure {
+  const UnExpectedFailure(super.message);
+}
+
+class ProfileFailure extends SupabaseFailure {
+  const ProfileFailure(super.message);
+}

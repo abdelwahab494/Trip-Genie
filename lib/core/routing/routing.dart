@@ -1,5 +1,4 @@
 import 'package:trip_genie/core/manager/app_imports.dart';
-import 'package:trip_genie/core/routing/routes.dart';
 
 class Routing {
   static Route<dynamic> generateRoute(RouteSettings settings) {

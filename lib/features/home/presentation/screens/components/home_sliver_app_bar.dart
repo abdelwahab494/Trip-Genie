@@ -23,9 +23,9 @@ class HomeSliverAppBar extends StatelessWidget {
               ),
             ),
           ),
-          BlocBuilder<UserCubit, UserState>(
+          BlocBuilder<HomeCubit, HomeState>(
             builder: (context, state) {
-              if (state is UserLoading) {
+              if (state is HomeLoading) {
                 return Skeletonizer(
                   effect: ShimmerEffect(
                     baseColor: Colors.grey.shade500,
@@ -50,7 +50,7 @@ class HomeSliverAppBar extends StatelessWidget {
                   ),
                 );
               }
-              if (state is UserLoaded) {
+              if (state is HomeLoaded) {
                 return RichText(
                   text: TextSpan(
                     text: s.hello,
@@ -59,7 +59,7 @@ class HomeSliverAppBar extends StatelessWidget {
                     ).copyWith(color: context.firstText),
                     children: [
                       TextSpan(
-                        text: state.user.name ?? s.user,
+                        text: state.user?.name ?? s.user,
                         style: AppFonts.inter16Medium(context).copyWith(
                           color: context.primary,
                           fontWeight: FontWeight.bold,

@@ -1,1 +1,1 @@
-enum TextFieldTypesEnum { text, email, password }
+enum TextFieldTypesEnum { text, email, password, phone, bio }

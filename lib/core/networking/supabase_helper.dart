@@ -12,7 +12,7 @@ class SupabaseHelper {
   //       anonKey: 'sb_publishable_XSAurIex_QX1J56ejomTMA_S2ndZYAD',
   //     );
   //   }
-  
+
   // Cities Table
   static const String citiesTable = "cities";
   static const String citiesIdColumn = 'id';
@@ -37,4 +37,15 @@ class SupabaseHelper {
   static const String placesCategoryColumn = 'category';
   static const String placesOpeningHoursColumn = 'opening_hours';
   static const String placesCreatedAtColumn = 'created_at';
+
+  //profile table
+  static const String profileTable = "profiles";
+  static const String profileIdColumn = "id";
+  static const String profileEmailColumn = "email";
+  static const String profileUsernameColumn = "username";
+  static const String profileBioColumn = "bio";
+  static const String profileImageurlColumn = "image_url";
+  static const String profilephoneNumberColumn = "phone_number";
+
+  static const String profileImagesBuket = "profile_images";
 }
