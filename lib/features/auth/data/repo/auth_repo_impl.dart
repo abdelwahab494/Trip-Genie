@@ -4,8 +4,9 @@ import 'package:trip_genie/core/manager/app_imports.dart';
 class AuthRepoImpl implements AuthRepo {
   final AuthService authService;
   final CachedUserDatasource userDatasource;
+  final ProfileService profileService;
 
-  AuthRepoImpl( {required this.authService, required this.userDatasource});
+  AuthRepoImpl( {required this.authService, required this.userDatasource, required this.profileService});
 
   @override
   Future<Either<Failure, UserModel>> signIn({
@@ -13,12 +14,14 @@ class AuthRepoImpl implements AuthRepo {
     required String password,
   }) async {
     try {
-      final response = await authService.signIn(
+     await authService.signIn(
         email: email,
         password: password,
       );
 
-      final UserModel model = UserModel.fromUser(response.user!);
+     // final UserModel model = UserModel.fromUser(response.user!);
+     final profileJson = await profileService.getProfile();
+     final model = UserModel.fromJson(profileJson!);
       await userDatasource.cacheUser(model);
 
       return Right(model);

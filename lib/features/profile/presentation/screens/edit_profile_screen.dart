@@ -24,12 +24,33 @@ class _EditProfileScreenState extends State<EditProfileScreen>
 
   @override
   Widget build(BuildContext context) {
-    return EditProfileScreenBody(
-      nameC: nameC,
-      emailC: emailC,
-      phoneC: phoneC,
-      bioC: bioC,
-      formKey: formKey,
+    return BlocListener<ProfileCubit, ProfileState>(
+      listenWhen: (prev, curr) =>
+          prev.updateSuccess != curr.updateSuccess ||
+          prev.errorMessage != curr.errorMessage ||
+          prev.imageErrorMessage != curr.imageErrorMessage,
+      listener: (context, state) {
+        if (state.updateSuccess) {
+          Navigator.of(context).pop();
+        }
+        if (state.errorMessage != null) {
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(state.errorMessage!)));
+        }
+        if (state.imageErrorMessage != null) {
+          ScaffoldMessenger.of(
+            context,
+          ).showSnackBar(SnackBar(content: Text(state.imageErrorMessage!)));
+        }
+      },
+      child: EditProfileScreenBody(
+        nameC: nameC,
+        emailC: emailC,
+        phoneC: phoneC,
+        bioC: bioC,
+        formKey: formKey,
+      ),
     );
   }
 }

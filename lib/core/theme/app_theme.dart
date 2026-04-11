@@ -16,6 +16,7 @@ class AppTheme {
     //   surface: LightColors.surface,
     //   tertiary: LightColors.grey,
     // ),
+    
     primaryColor: LightColors.primary,
     colorScheme: ColorScheme.fromSeed(
       seedColor: LightColors.primary,

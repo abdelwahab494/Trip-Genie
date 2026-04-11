@@ -10,16 +10,16 @@ class ProfileRepoImpl implements ProfileRepo {
   @override
   Future<Either<Failure, UserModel>> getUserProfile() async {
     try {
-      final data = await profileService.getProfile();
+      final data = await CachedUserHiveDatasource(
+        HiveHelper.user,
+      ).getCachedUser();
       if (data == null) return const Left(ProfileFailure("Profile not found"));
-      final id = data[SupabaseHelper.profileIdColumn];
+      //   final id = data[SupabaseHelper.profileIdColumn];
       if (id == null || id.toString().isEmpty) {
         return const Left(ProfileFailure("Invalid user data"));
       }
 
-      final user = UserModel.fromJson(data);
-
-      return Right(user);
+      return Right(data);
     } catch (e) {
       return Left(SupabaseFailure.fromException(e));
     }
@@ -29,6 +29,9 @@ class ProfileRepoImpl implements ProfileRepo {
   Future<Either<Failure, Unit>> updateUserProfile(UserModel user) async {
     try {
       await profileService.updateUserProfile(user);
+      final updatedData = await profileService.getProfile();
+      final freshUser = UserModel.fromJson(updatedData!);
+      await getIt<CachedUserDatasource>().cacheUser(freshUser);
       return Right(unit);
     } catch (e) {
       return Left(SupabaseFailure.fromException(e));

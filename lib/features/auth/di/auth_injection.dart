@@ -19,6 +19,7 @@ void authInjection() {
   if (!getIt.isRegistered<AuthRepo>()) {
     getIt.registerLazySingleton<AuthRepo>(
       () => AuthRepoImpl(
+        profileService: getIt<ProfileService>(),
         authService: getIt<AuthService>(),
         userDatasource: getIt<CachedUserDatasource>(),
       ),

@@ -17,6 +17,7 @@ class MyApp extends StatelessWidget {
             BlocProvider(create: (context) => getIt<HomeCubit>()),
             BlocProvider(create: (context) => getIt<TravelTipsCubit>()),
             BlocProvider(create: (context) => getIt<SavesCubit>()),
+            BlocProvider(create: (context) => getIt<ProfileCubit>()),
           ],
           child: MaterialApp(
             navigatorKey: navigatorKey,
