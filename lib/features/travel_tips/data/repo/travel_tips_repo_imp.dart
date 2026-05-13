@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dartz/dartz.dart';
 import 'package:trip_genie/core/manager/app_imports.dart';
 
+@LazySingleton(as: TravelTipsRepo, env: [InjectionEnv.dev])
 class TravelTipsRepoImpl implements TravelTipsRepo {
   final TravelTipsService tipsService;
   final TravelTipsLocalDatasource localDatasource;

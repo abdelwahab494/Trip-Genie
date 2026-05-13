@@ -2,18 +2,31 @@ import 'dart:io';
 
 import 'package:trip_genie/core/manager/app_imports.dart';
 
-class ProfileService {
-  final SupabaseClient supabase = SupabaseHelper.supabaseClient;
+sealed class ProfileService {
+  Future<Map<String, dynamic>?> getProfile();
+
+  Future<void> updateUserProfile(UserModel user);
+
+  Future<String> uploadAndUpdateProfileImage({
+    required File file,
+    required String userId,
+  });
+}
+
+@LazySingleton(as: ProfileService, env: [InjectionEnv.dev])
+class ProfileServiceImpl implements ProfileService {
+  final SupabaseClient supabase;
   final AuthService authService;
 
-  ProfileService(this.authService);
+  ProfileServiceImpl({required this.authService, required this.supabase});
 
+  @override
   Future<Map<String, dynamic>?> getProfile() async {
     String? currentUserId = authService.currentUser?.id;
     if (currentUserId == null || currentUserId.isEmpty) {
       throw Exception("User not authenticated");
     }
-  
+
     final result = await supabase
         .from(SupabaseHelper.profileTable)
         .select()
@@ -23,6 +36,7 @@ class ProfileService {
     return result;
   }
 
+  @override
   Future<void> updateUserProfile(UserModel user) async {
     await supabase
         .from(SupabaseHelper.profileTable)
@@ -30,6 +44,7 @@ class ProfileService {
         .eq(SupabaseHelper.profileIdColumn, user.id);
   }
 
+  @override
   Future<String> uploadAndUpdateProfileImage({
     required File file,
     required String userId,

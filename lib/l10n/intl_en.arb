@@ -116,5 +116,6 @@
   "bioPlaceholder": "Tell us about yourself...",
   "profile": "Profile",
   "edit": "Edit",
-  "retry": "Retry"
+  "retry": "Retry",
+  "cancle" : "cancle"
 }

@@ -2,6 +2,7 @@ import 'package:trip_genie/core/manager/app_imports.dart';
 
 part 'travel_tips_state.dart';
 
+@Injectable()
 class TravelTipsCubit extends Cubit<TravelTipsState> {
   final TravelTipsRepo travelTipsRepo;
 

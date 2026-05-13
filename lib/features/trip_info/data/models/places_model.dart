@@ -1,5 +1,4 @@
-import 'package:hive_flutter/adapters.dart';
-import 'package:trip_genie/core/networking/supabase_helper.dart';
+import 'package:trip_genie/core/manager/app_imports.dart';
 
 part 'places_model.g.dart';
 

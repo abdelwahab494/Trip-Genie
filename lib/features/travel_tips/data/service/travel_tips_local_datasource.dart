@@ -8,6 +8,7 @@ abstract class TravelTipsLocalDatasource {
   Future<void> deleteTipsList();
 }
 
+@LazySingleton(as: TravelTipsLocalDatasource, env: [InjectionEnv.dev])
 class TravelTipsHiveDatasource implements TravelTipsLocalDatasource {
   final Box<TravelTipModel> box;
 

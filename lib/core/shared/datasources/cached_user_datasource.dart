@@ -10,6 +10,7 @@ abstract class CachedUserDatasource {
   bool get isLoggedIn;
 }
 
+@LazySingleton(as: CachedUserDatasource, env: [InjectionEnv.dev])
 class CachedUserHiveDatasource implements CachedUserDatasource {
   final Box<UserModel> box;
   static const String userKey = "UserKey";

@@ -1,7 +1,18 @@
 import 'dart:convert';
 import 'package:trip_genie/core/manager/app_imports.dart';
 
-class PlansService {
+sealed class PlansService {
+  Future<List<PlanResponseModel>> generatePlan({
+    required String cityName,
+    required String category,
+    required String tripDuration,
+    required List<PlacesModel> placesList,
+  });
+}
+
+@LazySingleton(as: PlansService, env: [InjectionEnv.dev])
+class PlansServiceImpl implements PlansService {
+  @override
   Future<List<PlanResponseModel>> generatePlan({
     required String cityName,
     required String category,

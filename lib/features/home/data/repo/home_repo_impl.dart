@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:trip_genie/core/manager/app_imports.dart';
 
+@LazySingleton(as: HomeRepo, env: [InjectionEnv.dev])
 class HomeRepoImpl implements HomeRepo {
   final CitiesDatabaseService citiesDatabaseService;
   final CachedUserDatasource localService;

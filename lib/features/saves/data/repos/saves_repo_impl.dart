@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:trip_genie/core/manager/app_imports.dart';
 
+@LazySingleton(as: SavesRepo, env: [InjectionEnv.dev])
 class SavesRepoImpl extends SavesRepo {
   final TripPlanDatasource services;
 

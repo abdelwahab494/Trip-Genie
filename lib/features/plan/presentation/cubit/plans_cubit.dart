@@ -2,6 +2,7 @@ import 'package:trip_genie/core/manager/app_imports.dart';
 
 part 'plans_state.dart';
 
+@Injectable()
 class PlansCubit extends Cubit<PlansState> {
   final PlansRepo repo;
   PlansCubit(this.repo) : super(PlansInitial());

@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:trip_genie/core/manager/app_imports.dart';
 
+@LazySingleton(as: ProfileRepo, env: [InjectionEnv.dev])
 class ProfileRepoImpl implements ProfileRepo {
   final ProfileService profileService;
 

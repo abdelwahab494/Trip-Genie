@@ -3,6 +3,7 @@ import 'package:trip_genie/core/manager/app_imports.dart';
 
 part 'home_state.dart';
 
+@Injectable()
 class HomeCubit extends Cubit<HomeState> {
   final HomeRepo repo;
   StreamSubscription? _subscription;

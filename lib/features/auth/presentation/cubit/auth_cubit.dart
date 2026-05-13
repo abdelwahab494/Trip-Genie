@@ -2,6 +2,7 @@ import 'package:trip_genie/core/manager/app_imports.dart';
 
 part 'auth_state.dart';
 
+@Injectable()
 class AuthCubit extends Cubit<AuthState> {
   final AuthRepo authRepo;
 

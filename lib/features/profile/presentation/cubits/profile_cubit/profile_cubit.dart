@@ -3,6 +3,7 @@ import 'package:trip_genie/core/manager/app_imports.dart';
 
 part 'profile_state.dart';
 
+@Injectable()
 class ProfileCubit extends Cubit<ProfileState> {
   final ProfileRepo profileRepo;
 

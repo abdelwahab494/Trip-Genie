@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:trip_genie/core/manager/app_imports.dart';
 
+@LazySingleton(as: PlansRepo, env: [InjectionEnv.dev])
 class PlansRepoImpl implements PlansRepo {
   final PlansService service;
   final TripPlanDatasource localServices;

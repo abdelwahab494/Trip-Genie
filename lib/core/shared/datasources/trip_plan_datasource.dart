@@ -8,6 +8,7 @@ abstract class TripPlanDatasource {
   Future<void> deleteTripPlan(int index);
 }
 
+@LazySingleton(as: TripPlanDatasource, env: [InjectionEnv.dev])
 class HiveTripPlanDatasource extends TripPlanDatasource {
   final Box<TripModel> tripBox;
 

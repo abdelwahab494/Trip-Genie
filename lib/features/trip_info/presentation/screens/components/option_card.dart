@@ -13,7 +13,7 @@ class OptionCard extends StatelessWidget {
     required this.isSelected,
     required this.onTap,
     this.isSkeleton = false,
-    required this.icon
+    required this.icon,
   });
 
   const OptionCard.skeleton({super.key})
@@ -56,11 +56,7 @@ class OptionCard extends StatelessWidget {
                 color: iconBgColor,
                 borderRadius: BorderRadius.circular(AppSizes.r12),
               ),
-              child: Icon(
-                icon,
-                color: iconColor,
-                size: AppSizes.w30,
-              ),
+              child: Icon(icon, color: iconColor, size: AppSizes.w30),
             ),
             Expanded(
               child: Text(
@@ -71,11 +67,13 @@ class OptionCard extends StatelessWidget {
                 ),
               ),
             ),
-            Radio<int>(
-              activeColor: context.primary,
-              value: isSelected ? 1 : 0,
-              groupValue: isSelected ? 1 : null,
+            RadioGroup<int>(
+              groupValue: isSelected ? 1 : 0,
               onChanged: (_) {},
+              child: Radio<int>(
+                activeColor: context.primary,
+                value: isSelected ? 1 : 0,
+              ),
             ),
           ],
         ),

@@ -8,7 +8,7 @@ part of 'places_model.dart';
 
 class PlacesModelAdapter extends TypeAdapter<PlacesModel> {
   @override
-  final int typeId = 0;
+  final typeId = 0;
 
   @override
   PlacesModel read(BinaryReader reader) {
@@ -23,13 +23,13 @@ class PlacesModelAdapter extends TypeAdapter<PlacesModel> {
       regionId: fields[3] as String?,
       description: fields[4] as String?,
       address: fields[5] as String?,
-      lat: fields[6] as double?,
-      lng: fields[7] as double?,
+      lat: (fields[6] as num?)?.toDouble(),
+      lng: (fields[7] as num?)?.toDouble(),
       images: (fields[8] as List?)?.cast<String>(),
       category: fields[9] as String?,
       openingHours: (fields[10] as Map?)?.cast<String, dynamic>(),
       createdAt: fields[11] as DateTime?,
-      visitTime: fields[12] as String,
+      visitTime: fields[12] == null ? "afternoon" : fields[12] as String,
     );
   }
 

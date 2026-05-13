@@ -2,6 +2,7 @@ import 'package:trip_genie/core/manager/app_imports.dart';
 
 part 'trip_info_state.dart';
 
+@Injectable()
 class TripInfoCubit extends Cubit<TripInfoState> {
   final TripInfoRepo repo;
 

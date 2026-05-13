@@ -36,6 +36,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "bioPlaceholder":
             MessageLookupByLibrary.simpleMessage("Tell us about yourself..."),
         "cancel": MessageLookupByLibrary.simpleMessage("cancel"),
+        "cancle": MessageLookupByLibrary.simpleMessage("cancle"),
         "changeProfilePhoto":
             MessageLookupByLibrary.simpleMessage("Change Profile Photo"),
         "checkYourEmail":

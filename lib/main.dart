@@ -3,7 +3,7 @@ import 'core/manager/app_imports.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await HiveHelper.init();
-  setupServiceLocator();
+  configureDependency(InjectionEnv.dev);
 
   OneSignal.Debug.setLogLevel(OSLogLevel.none);
   OneSignal.initialize(Env.oneSignalKey);

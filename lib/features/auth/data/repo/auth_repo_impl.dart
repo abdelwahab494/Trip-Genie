@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:trip_genie/core/manager/app_imports.dart';
 
+@LazySingleton(as: AuthRepo, env: [InjectionEnv.dev])
 class AuthRepoImpl implements AuthRepo {
   final AuthService authService;
   final CachedUserDatasource userDatasource;

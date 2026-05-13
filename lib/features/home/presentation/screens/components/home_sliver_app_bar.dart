@@ -137,12 +137,7 @@ class HomeSliverAppBar extends StatelessWidget {
             child: IconButton(
               icon: Icon(Icons.notifications, size: AppSizes.w16),
               color: Theme.of(context).colorScheme.primary,
-              onPressed: () async {
-                AuthService(Supabase.instance.client).signOut();
-                Navigator.of(
-                  context,
-                ).push(MaterialPageRoute(builder: (_) => const LoginScreen()));
-              },
+              onPressed: () {},
             ),
           ),
         ),

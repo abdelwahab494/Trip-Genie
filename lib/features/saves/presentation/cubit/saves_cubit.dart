@@ -2,6 +2,7 @@ import 'package:trip_genie/core/manager/app_imports.dart';
 
 part 'saves_state.dart';
 
+@Injectable()
 class SavesCubit extends Cubit<SavesState> {
   final SavesRepo repo;
   SavesCubit(this.repo) : super(SavesInitial());
