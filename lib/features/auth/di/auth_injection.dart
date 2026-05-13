@@ -6,8 +6,12 @@ void authInjection() {
     getIt.registerLazySingleton<Box<UserModel>>(() => HiveHelper.user);
   }
 
+  if (!getIt.isRegistered<SupabaseClient>()) {
+    getIt.registerLazySingleton<SupabaseClient>(() => Supabase.instance.client);
+  }
+
   if (!getIt.isRegistered<AuthService>()) {
-    getIt.registerLazySingleton<AuthService>(() => AuthService());
+    getIt.registerLazySingleton<AuthService>(() => AuthService(getIt<SupabaseClient>()));
   }
 
   if (!getIt.isRegistered<CachedUserDatasource>()) {

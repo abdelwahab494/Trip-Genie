@@ -6,7 +6,11 @@ class AuthRepoImpl implements AuthRepo {
   final CachedUserDatasource userDatasource;
   final ProfileService profileService;
 
-  AuthRepoImpl( {required this.authService, required this.userDatasource, required this.profileService});
+  AuthRepoImpl({
+    required this.authService,
+    required this.userDatasource,
+    required this.profileService,
+  });
 
   @override
   Future<Either<Failure, UserModel>> signIn({
@@ -14,14 +18,11 @@ class AuthRepoImpl implements AuthRepo {
     required String password,
   }) async {
     try {
-     await authService.signIn(
-        email: email,
-        password: password,
-      );
+      await authService.signIn(email: email, password: password);
 
-     // final UserModel model = UserModel.fromUser(response.user!);
-     final profileJson = await profileService.getProfile();
-     final model = UserModel.fromJson(profileJson!);
+      // final UserModel model = UserModel.fromUser(response.user!);
+      final profileJson = await profileService.getProfile();
+      final UserModel model = UserModel.fromMap(profileJson!);
       await userDatasource.cacheUser(model);
 
       return Right(model);

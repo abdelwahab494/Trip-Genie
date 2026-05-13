@@ -922,11 +922,11 @@ class S {
     );
   }
 
-  /// `cancle`
-  String get cancle {
+  /// `cancel`
+  String get cancel {
     return Intl.message(
-      'cancle',
-      name: 'cancle',
+      'cancel',
+      name: 'cancel',
       desc: '',
       args: [],
     );

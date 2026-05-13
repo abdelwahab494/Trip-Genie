@@ -12,9 +12,9 @@ class CustomDrawer extends StatelessWidget {
             child: BlocBuilder<ProfileCubit, ProfileState>(
               buildWhen: (prev, curr) =>
                   prev.isUploadingImage != curr.isUploadingImage ||
-                  prev.profile?.imageUrl != curr.profile?.imageUrl,
+                  prev.profile?.imagePath != curr.profile?.imagePath,
               builder: (context, state) {
-                final imageUrl = state.profile?.imageUrl;
+                final imagePath = state.profile?.imagePath;
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -44,10 +44,10 @@ class CustomDrawer extends StatelessWidget {
                                       ).colorScheme.primary,
                                     ),
                                   )
-                                : imageUrl != null && imageUrl.isNotEmpty
+                                : imagePath != null && imagePath.isNotEmpty
                                 ? ClipOval(
                                     child: Image.network(
-                                      imageUrl,
+                                      imagePath,
                                       width: 60,
                                       height: 60,
                                       fit: BoxFit.cover,

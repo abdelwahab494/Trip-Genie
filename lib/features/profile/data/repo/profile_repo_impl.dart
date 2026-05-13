@@ -10,12 +10,12 @@ class ProfileRepoImpl implements ProfileRepo {
   @override
   Future<Either<Failure, UserModel>> getUserProfile() async {
     try {
-      final data = await CachedUserHiveDatasource(
+      final data = CachedUserHiveDatasource(
         HiveHelper.user,
       ).getCachedUser();
       if (data == null) return const Left(ProfileFailure("Profile not found"));
       //   final id = data[SupabaseHelper.profileIdColumn];
-      if (id == null || id.toString().isEmpty) {
+      if (id.toString().isEmpty) {
         return const Left(ProfileFailure("Invalid user data"));
       }
 
@@ -30,7 +30,7 @@ class ProfileRepoImpl implements ProfileRepo {
     try {
       await profileService.updateUserProfile(user);
       final updatedData = await profileService.getProfile();
-      final freshUser = UserModel.fromJson(updatedData!);
+      final freshUser = UserModel.fromMap(updatedData!);
       await getIt<CachedUserDatasource>().cacheUser(freshUser);
       return Right(unit);
     } catch (e) {
@@ -56,7 +56,7 @@ class ProfileRepoImpl implements ProfileRepo {
         return const Left(ProfileFailure("Failed to sync profile"));
       }
 
-      return Right(UserModel.fromJson(updatedData));
+      return Right(UserModel.fromMap(updatedData));
     } catch (e) {
       return Left(SupabaseFailure.fromException(e));
     }

@@ -17,9 +17,9 @@ class HomeSliverAppBar extends StatelessWidget {
             child: BlocBuilder<ProfileCubit, ProfileState>(
               buildWhen: (prev, curr) =>
                   prev.isUploadingImage != curr.isUploadingImage ||
-                  prev.profile?.imageUrl != curr.profile?.imageUrl,
+                  prev.profile?.imagePath != curr.profile?.imagePath,
               builder: (context, state) {
-                final imageUrl = state.profile?.imageUrl;
+                final imagePath = state.profile?.imagePath;
                 return GestureDetector(
                   onTap: () => Scaffold.of(context).openDrawer(),
                   child: CircleAvatar(
@@ -34,10 +34,10 @@ class HomeSliverAppBar extends StatelessWidget {
                               color: Theme.of(context).colorScheme.primary,
                             ),
                           )
-                        : imageUrl != null && imageUrl.isNotEmpty
+                        : imagePath != null && imagePath.isNotEmpty
                         ? ClipOval(
                             child: Image.network(
-                              imageUrl,
+                              imagePath,
                               width: AppSizes.r16 * 2,
                               height: AppSizes.r16 * 2,
                               fit: BoxFit.cover,
@@ -94,9 +94,10 @@ class HomeSliverAppBar extends StatelessWidget {
                     ).copyWith(color: Theme.of(context).colorScheme.onSurface),
                     children: [
                       TextSpan(
-                        text: state.profile!.name!.isNotEmpty
-                            ? state.profile!.name!
-                            : "user",
+                        // text: state.profile!.name!.isNotEmpty
+                        //     ? state.profile!.name!
+                        //     : "user",
+                        text: "Abdelwahab",
                         style: AppFonts.inter16Medium(context).copyWith(
                           color: Theme.of(context).colorScheme.primary,
                           fontWeight: FontWeight.bold,
@@ -137,7 +138,7 @@ class HomeSliverAppBar extends StatelessWidget {
               icon: Icon(Icons.notifications, size: AppSizes.w16),
               color: Theme.of(context).colorScheme.primary,
               onPressed: () async {
-                AuthService().signOut();
+                AuthService(Supabase.instance.client).signOut();
                 Navigator.of(
                   context,
                 ).push(MaterialPageRoute(builder: (_) => const LoginScreen()));

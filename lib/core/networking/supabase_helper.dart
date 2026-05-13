@@ -13,6 +13,14 @@ class SupabaseHelper {
   //     );
   //   }
 
+  // Users Table
+  static const String userIdColumn = "id";
+  static const String userNameMetaData = "name";
+  static const String userEmailColumn = "email";
+  static const String userBioMetaData = "bio";
+  static const String userAvatarPathMetaData = "avatar_path";
+  static const String userPhoneMetaData = "phone";
+
   // Cities Table
   static const String citiesTable = "cities";
   static const String citiesIdColumn = 'id';

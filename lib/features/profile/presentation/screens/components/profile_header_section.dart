@@ -19,11 +19,10 @@ class ProfileHeaderSection extends StatelessWidget {
         Stack(
           alignment: Alignment.bottomRight,
           children: [
-           
             BlocBuilder<ProfileCubit, ProfileState>(
               buildWhen: (prev, curr) =>
                   prev.isUploadingImage != curr.isUploadingImage ||
-                  prev.profile?.imageUrl != curr.profile?.imageUrl,
+                  prev.profile?.imagePath != curr.profile?.imagePath,
               builder: (context, state) {
                 if (state.isUploadingImage) {
                   return const CircleAvatar(
@@ -32,14 +31,14 @@ class ProfileHeaderSection extends StatelessWidget {
                   );
                 }
 
-                final imageUrl = state.profile?.imageUrl;
+                final imagePath = state.profile?.imagePath;
 
                 return CircleAvatar(
                   radius: 40,
-                  child: imageUrl != null && imageUrl.isNotEmpty
+                  child: imagePath != null && imagePath.isNotEmpty
                       ? ClipOval(
                           child: Image.network(
-                            imageUrl,
+                            imagePath,
                             width: 80,
                             height: 80,
                             fit: BoxFit.cover,

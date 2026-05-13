@@ -17,7 +17,7 @@ class UserModel extends HiveObject {
   final String? bio;
 
   @HiveField(4)
-  final String? imageUrl;
+  final String? imagePath;
 
   @HiveField(5)
   final String? phoneNumber;
@@ -27,39 +27,57 @@ class UserModel extends HiveObject {
     this.email,
     this.name,
     this.bio,
-    this.imageUrl,
+    this.imagePath,
     this.phoneNumber,
   });
 
-  factory UserModel.fromJson(Map<String, dynamic> json) {
+  factory UserModel.fromUser(User user) {
     return UserModel(
-      id: json[SupabaseHelper.profileIdColumn] as String,
-      email: json[SupabaseHelper.profileEmailColumn] as String? ?? '',
-      name: json[SupabaseHelper.profileUsernameColumn] as String? ?? '',
-      bio: json[SupabaseHelper.profileBioColumn] as String? ?? '',
-      imageUrl: json[SupabaseHelper.profileImageurlColumn] as String? ?? '',
-      phoneNumber:
-          json[SupabaseHelper.profilephoneNumberColumn] as String? ?? '',
+      id: user.id,
+      email: user.email,
+      name: user.userMetadata?[SupabaseHelper.userNameMetaData],
+      bio: user.userMetadata?[SupabaseHelper.userBioMetaData],
+      imagePath: user.userMetadata?[SupabaseHelper.userAvatarPathMetaData],
+      phoneNumber: user.userMetadata?[SupabaseHelper.userPhoneMetaData],
     );
   }
 
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = {};
-    if (name != null) data[SupabaseHelper.profileUsernameColumn] = name;
-    if (bio != null) data[SupabaseHelper.profileBioColumn] = bio;
-    if (imageUrl != null) data[SupabaseHelper.profileImageurlColumn] = imageUrl;
-    if (email != null) data[SupabaseHelper.profileEmailColumn] = email;
-    if (phoneNumber != null) {
-      data[SupabaseHelper.profilephoneNumberColumn] = phoneNumber;
-    }
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      SupabaseHelper.userIdColumn: id,
+      SupabaseHelper.userEmailColumn: email,
+      SupabaseHelper.userNameMetaData: name,
+      SupabaseHelper.userBioMetaData: bio,
+      SupabaseHelper.userAvatarPathMetaData: imagePath,
+      SupabaseHelper.userPhoneMetaData: phoneNumber,
+    };
+  }
 
-    return data;
+  factory UserModel.fromMap(Map<String, dynamic> map) {
+    return UserModel(
+      id: map[SupabaseHelper.userIdColumn] as String,
+      email: map[SupabaseHelper.userEmailColumn] != null
+          ? map[SupabaseHelper.userEmailColumn] as String
+          : null,
+      name: map[SupabaseHelper.userNameMetaData] != null
+          ? map[SupabaseHelper.userNameMetaData] as String
+          : null,
+      bio: map[SupabaseHelper.userBioMetaData] != null
+          ? map[SupabaseHelper.userBioMetaData] as String
+          : null,
+      imagePath: map[SupabaseHelper.userAvatarPathMetaData] != null
+          ? map[SupabaseHelper.userAvatarPathMetaData] as String
+          : null,
+      phoneNumber: map[SupabaseHelper.userPhoneMetaData] != null
+          ? map[SupabaseHelper.userPhoneMetaData] as String
+          : null,
+    );
   }
 
   UserModel copyWith({
     String? name,
     String? bio,
-    String? imageUrl,
+    String? imagePath,
     String? email,
     String? phoneNumber,
   }) {
@@ -68,16 +86,8 @@ class UserModel extends HiveObject {
       email: email ?? this.email,
       name: name ?? this.name,
       bio: bio ?? this.bio,
-      imageUrl: imageUrl ?? this.imageUrl,
+      imagePath: imagePath ?? this.imagePath,
       phoneNumber: phoneNumber ?? this.phoneNumber,
-    );
-  }
-
-  factory UserModel.fromUser(User user) {
-    return UserModel(
-      id: user.id,
-      email: user.email,
-      name: user.userMetadata?["name"],
     );
   }
 }

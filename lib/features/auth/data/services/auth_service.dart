@@ -1,7 +1,9 @@
 import 'package:trip_genie/core/manager/app_imports.dart';
 
 class AuthService {
-  final SupabaseClient supabase = SupabaseHelper.supabaseClient;
+  final SupabaseClient supabase;
+
+  AuthService(this.supabase);
 
   Future<AuthResponse> signIn({
     required String email,
@@ -14,11 +16,19 @@ class AuthService {
     required String name,
     required String email,
     required String password,
+    String? bio,
+    String? avatar,
+    String? phone,
   }) async {
     return supabase.auth.signUp(
       email: email,
       password: password,
-      data: {"name": name},
+      data: {
+        SupabaseHelper.userNameMetaData: name,
+        SupabaseHelper.userBioMetaData: bio,
+        SupabaseHelper.userAvatarPathMetaData: avatar,
+        SupabaseHelper.userPhoneMetaData: phone,
+      },
     );
   }
 
@@ -45,12 +55,24 @@ class AuthService {
     String? name,
     String? email,
     String? password,
+    String? bio,
+    String? avatarPath,
+    String? phone,
   }) async {
+    final Map<String, dynamic> data = {};
+
+    if (name != null) data[SupabaseHelper.userNameMetaData] = name;
+    if (bio != null) data[SupabaseHelper.userBioMetaData] = bio;
+    if (avatarPath != null) {
+      data[SupabaseHelper.userAvatarPathMetaData] = avatarPath;
+    }
+    if (phone != null) data[SupabaseHelper.userPhoneMetaData] = phone;
+
     await supabase.auth.updateUser(
       UserAttributes(
-        password: password,
         email: email,
-        data: name != null ? {"name": name} : null,
+        password: password,
+        data: data.isNotEmpty ? data : null,
       ),
     );
   }

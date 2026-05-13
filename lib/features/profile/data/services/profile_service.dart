@@ -26,7 +26,7 @@ class ProfileService {
   Future<void> updateUserProfile(UserModel user) async {
     await supabase
         .from(SupabaseHelper.profileTable)
-        .update(user.toJson())
+        .update(user.toMap())
         .eq(SupabaseHelper.profileIdColumn, user.id);
   }
 

@@ -65,7 +65,7 @@ class ProfileCubit extends Cubit<ProfileState> {
         state.copyWith(
           isUploadingImage: false,
 
-          profile: state.profile?.copyWith(imageUrl: updatedUser.imageUrl),
+          profile: state.profile?.copyWith(imagePath: updatedUser.imagePath),
         ),
       ),
     );
